@@ -1,5 +1,4 @@
 import {initSession} from '../common/session_init';
+import ReactDOM from 'react-dom';
 
-$(document).ready(function() {
-  initSession();
-});
+ReactDOM.render(initSession(), document.getElementById('labeling-interface'));
