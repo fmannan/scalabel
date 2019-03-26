@@ -4,6 +4,8 @@ import LabelLayout from '../components/label_layout';
 import TitleBar from '../components/title_bar';
 import Session from './session';
 import Path from './path';
+import List from '@material-ui/core/List';
+import {ToolBar} from '../components/image_toolbar';
 import MainView from '../components/main_view';
 import ImageView from '../components/image_view';
 
@@ -50,7 +52,10 @@ export class Window {
             dashboardLink={Path.vendorDashboard()}
         />
     );
-    const leftSidebar1 = (<div>1</div>); // just replace this
+    const leftSidebar1 = (
+          <List>{ToolBar}</List>
+      );
+    /* const leftSidebar1 = (<ToolBar/>); // just replace this*/
     const imageView = (<ImageView key={'imageView'}/>);
     const main = (<MainView views={[imageView]} />);
     const bottomBar = (<div>3</div>);
