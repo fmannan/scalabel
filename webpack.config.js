@@ -11,7 +11,6 @@ let config = {
     image_v2: __dirname + '/app/src/js/entries/image.index.js',
     worker: __dirname + '/app/src/js/entries/worker.tsx',
     admin: __dirname + '/app/src/js/entries/admin.tsx',
-    title_bar: __dirname + '/app/src/js/entries/titlebar.index.js',
     point_cloud: __dirname + '/app/src/js/v1/point_cloud/point_cloud.index.js',
     speed_test: __dirname + '/app/src/js/dev/speed_test.js',
     dashboard: __dirname + '/app/src/js/v1/dashboard.index.js',
