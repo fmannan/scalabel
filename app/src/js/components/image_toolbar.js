@@ -9,13 +9,26 @@ import CreateIcon from '@material-ui/core/SvgIcon/SvgIcon';
 // Get the task
 //
 /* Sidebar: mainList */
-export const ToolBar = (
-    <div>
-        <ListItem button onClick={goCreate}>
-            <ListItemIcon>
-                <CreateIcon />
-            </ListItemIcon>
-            <ListItemText primary='Create new project' />
-        </ListItem>
-    </div>
-);
+
+type Props = {
+    categories: Object,
+    attributes: Object,
+}
+
+export class ToolBar extends React.Component<Props> {
+    render() {
+        return (
+            <div>
+                <ListItem button onClick={goCreate}>
+                    <ListItemIcon>
+                        <CreateIcon />
+                    </ListItemIcon>
+                    <ListItemText primary='Create new project' />
+                </ListItem>
+            </div>
+        )
+    }
+
+}
+
+

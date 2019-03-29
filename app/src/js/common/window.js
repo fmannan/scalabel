@@ -53,8 +53,11 @@ export class Window {
         />
     );
     const leftSidebar1 = (
-          <List>{ToolBar}</List>
-      );
+        <ToolBar
+            categories={state.config.categories}
+            attributes={state.config.attributes}
+        />
+    );
     /* const leftSidebar1 = (<ToolBar/>); // just replace this*/
     const imageView = (<ImageView key={'imageView'}/>);
     const main = (<MainView views={[imageView]} />);
