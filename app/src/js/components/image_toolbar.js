@@ -17,6 +17,8 @@ type Props = {
 
 export class ToolBar extends React.Component<Props> {
     render() {
+        const {categories} = this.props;
+        const {attributes} = this.props;
         return (
             <div>
                 <ListItem button onClick={goCreate}>
