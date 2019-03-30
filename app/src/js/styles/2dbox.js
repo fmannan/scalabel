@@ -5,25 +5,21 @@ export const categoryStyles = (theme) => ({
     },
     formControl: {
         margin: theme.spacing.unit,
-        minWidth: 120,
-        maxWidth: 300,
+        minWidth: 150,
+        maxWidth: 360,
     },
 });
 
-export const deletButtonStyles = (theme) => ({
+export const removeButtonStyles = (theme) => ({
     button: {
         margin: theme.spacing.unit,
         fontSize: 2,
     },
-    rightIcon: {
-        marginLeft: theme.spacing.unit,
-    },
 });
 
-export const switchStyles = (theme) => ({
+export const switchStyles = () => ({
     root: {
         width: '100%',
         maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
     },
 });

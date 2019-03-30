@@ -4,7 +4,6 @@ import LabelLayout from '../components/label_layout';
 import TitleBar from '../components/title_bar';
 import Session from './session';
 import Path from './path';
-import List from '@material-ui/core/List';
 import {ToolBar} from '../components/image_toolbar';
 import MainView from '../components/main_view';
 import ImageView from '../components/image_view';
