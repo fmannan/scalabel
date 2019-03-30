@@ -1,4 +1,5 @@
 import React from 'react';
+import {categoryStyles, deletButtonStyles, switchStyles} from '../styles/2dbox';
 import ListItem from '@material-ui/core/ListItem';
 import {withStyles} from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -8,12 +9,12 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state/index';
-
-// player-controls
-// Get the task
-//
-/* Sidebar: mainList */
+import PopupState, {bindTrigger, bindMenu} from 'material-ui-popup-state/index';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Switch from '@material-ui/core/Switch';
 
 const styles = theme => ({
     button: {
@@ -95,31 +96,7 @@ class MultipleSelect extends React.Component<Props> {
     }
 }
 
-const categoryStyles = (theme) => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    formControl: {
-        margin: theme.spacing.unit,
-        minWidth: 120,
-        maxWidth: 300,
-    },
-});
-
 const Category = withStyles(categoryStyles, {withTheme: true})(MultipleSelect);
-
-// player-controls
-// Get the task
-const deletButtonStyles = (theme) => ({
-    button: {
-        margin: theme.spacing.unit,
-        fontSize: 3,
-    },
-    rightIcon: {
-        marginLeft: theme.spacing.unit,
-    },
-});
 
 function IconLabelButtons(props) {
     const {classes} = props;
@@ -134,14 +111,69 @@ function IconLabelButtons(props) {
 }
 const DeletButton = withStyles(deletButtonStyles)(IconLabelButtons);
 
+class SwitchButton extends React.Component<Props> {
+    state = {
+        checked: [],
+    };
+
+    handleToggle = (value) => () => {
+        const {checked} = this.state;
+        const currentIndex = checked.indexOf(value);
+        const newChecked = [...checked];
+
+        if (currentIndex === -1) {
+            newChecked.push(value);
+        } else {
+            newChecked.splice(currentIndex, 1);
+        }
+
+        this.setState({
+            checked: newChecked,
+        });
+    };
+
+    render() {
+        const {classes} = this.props;
+        const {attributes} = this.props;
+
+        return (
+            <List className={classes.root}>
+                <ListItem>
+                    <ListItemText primary='Occluded'/>
+                    <ListItemSecondaryAction>
+                        <Switch
+                            onChange={this.handleToggle('Occluded')}
+                            checked={this.state.checked.indexOf('Occluded') !== -1}
+                        />
+                    </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem>
+                    <ListItemText primary='Truncated'/>
+                    <ListItemSecondaryAction>
+                        <Switch
+                            onChange={this.handleToggle('Truncated')}
+                            checked={this.state.checked.indexOf('Truncated') !== -1}
+                        />
+                    </ListItemSecondaryAction>
+                </ListItem>
+            </List>
+        );
+    }
+}
+
+const SwitchBtn = withStyles(switchStyles)(SwitchButton);
 
 function TrafficLightColor() {
     return (
         <div>
-            <PopupState variant="popover" popupId="demo-popup-menu" size="small">
-                {popupState => (
+            <PopupState variant="popover"
+                        popupId="demo-popup-menu"
+                        size="small">
+                {(popupState) => (
                     <React.Fragment>
-                        <Button variant="contained" size="small" fontSize="small" {...bindTrigger(popupState)}>
+                        <Button variant="contained"
+                                size="small"
+                                fontSize="small" {...bindTrigger(popupState)}>
                          Traffic Light Color
                         </Button>
                         <Menu {...bindMenu(popupState)}>
@@ -156,7 +188,6 @@ function TrafficLightColor() {
         </div>
     );
 }
-
 
 /**
  * This is ToolBar component that displays
@@ -175,9 +206,14 @@ export class ToolBar extends React.Component<Props> {
                 <ListItem>
                     <Category categories={categories}/>
                 </ListItem>
+                <Divider variant="middle" />
+                <ListItem>
+                    <SwitchBtn name = {attributes}/>
+                </ListItem>
                 <ListItem>
                     <TrafficLightColor />
                 </ListItem>
+                <Divider variant="middle" />
                 <ListItem>
                     <DeletButton />
                 </ListItem>
@@ -185,4 +221,3 @@ export class ToolBar extends React.Component<Props> {
         );
     }
 }
-
