@@ -1,8 +1,11 @@
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import yellow from '@material-ui/core/colors/yellow';
+import grey from '@material-ui/core/colors/grey';
+import createStyles from '@material-ui/core/styles/createStyles';
+import {Theme} from '@material-ui/core';
 
-export const categoryStyles = (theme: { spacing: { unit: any; }; }) => ({
+export const categoryStyles = (theme: Theme) => createStyles({
     root: {
         display: 'flex',
         flexWrap: 'wrap'
@@ -29,14 +32,22 @@ export const switchStyles = () => ({
 });
 
 export const trafficStyles = () => ({
+    NAstyle: {
+        'color': grey[600],
+        '&$checkedNA': {
+            color: grey[500]
+        }
+    },
+    checkedNA: {},
+
     greenstyle: {
         'color': green[600],
         '&$checkedgreen': {
             color: green[500]
         }
     },
-
     checkedgreen: {},
+
     redstyle: {
         'color': red[600],
         '&$checkedred': {

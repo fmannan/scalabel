@@ -7,9 +7,6 @@ import ListItem from '@material-ui/core/ListItem';
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import PopupState, {bindTrigger, bindMenu} from 'material-ui-popup-state/index';
 import Divider from '@material-ui/core/Divider';
 
 interface Props {
@@ -23,49 +20,18 @@ interface Props {
  * @param {object} props
  * @return {jsx} component
  */
-function IconLabelButtons(props: { classes: any; }) {
+function RemoveButtons(props: { classes: any; }) {
     const {classes} = props;
     return (
         <div>
-            <Button size='small' fontSize='small' className={classes.button}>
+            <Button size='small' className={classes.button}>
                 Remove
                 <DeleteIcon fontSize='small' />
             </Button>
         </div>
     );
 }
-const RemoveButton = withStyles(removeButtonStyles)(IconLabelButtons);
-
-/**
- * This is a trafficLightColor button component that displays
- * all the color attributes of the traffic lights
- * @return {jsx} component
- */
-function TrafficLightColor() {
-    return (
-        <div>
-            <PopupState variant='popover'
-                        popupId='demo-popup-menu'
-                        size='small'>
-                {(popupState: { close: ((event: React.MouseEvent<HTMLElement, MouseEvent>) => void) | undefined; }) => (
-                    <React.Fragment>
-                        <Button variant='contained'
-                                size='small'
-                                fontSize='small' {...bindTrigger(popupState)}>
-                            Traffic Light Color
-                        </Button>
-                        <Menu {...bindMenu(popupState)}>
-                            <MenuItem onClick={popupState.close}>NA</MenuItem>
-                            <MenuItem onClick={popupState.close}>G</MenuItem>
-                            <MenuItem onClick={popupState.close}>Y</MenuItem>
-                            <MenuItem onClick={popupState.close}>R</MenuItem>
-                        </Menu>
-                    </React.Fragment>
-                )}
-            </PopupState>
-        </div>
-    );
-}
+const RemoveButton = withStyles(removeButtonStyles)(RemoveButtons);
 
 /**a
  * This is ToolBar component that displays
@@ -86,12 +52,8 @@ export class ToolBar extends React.Component<Props> {
                 </ListItem>
                 <Divider variant='middle' />
                 <ListItem>
-                    <SwitchBtn name = {attributes}/>
+                    <SwitchBtn attributes = {attributes}/>
                 </ListItem>
-                <ListItem>
-                    <TrafficLightColor />
-                </ListItem>
-
                 <ListItem>
                     <ToolbarTrafficlight />
                 </ListItem>

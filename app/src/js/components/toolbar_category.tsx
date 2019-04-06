@@ -7,7 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 
 interface Props {
     categories: any[];
-    attributes: any[];
+    classes: any;
 }
 
 /**

@@ -8,8 +8,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 interface Props {
-    categories: any[];
     attributes: any[];
+    classes: any;
 }
 
 /**

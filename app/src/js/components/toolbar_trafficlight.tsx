@@ -5,11 +5,21 @@ import FormGroup from '@material-ui/core/FormGroup';
 import {withStyles} from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-class CheckboxLabels extends React.Component {
+interface Props {
+    classes: any;
+}
+
+/**
+ * This is a trafficLightColor button component that displays
+ * all the color attributes of the traffic lights
+ * @return {jsx} component
+ */
+class Trafficlight extends React.Component<Props> {
     public state = {
-        checkedY: true,
-        checkedG: true,
-        checkedR: true
+        checkedY: false,
+        checkedG: false,
+        checkedR: false,
+        checkedNA: true
     };
 
     public handleChange = (name: any) => (event: { target: { checked: any; }; }) => {
@@ -23,6 +33,17 @@ class CheckboxLabels extends React.Component {
             <FormGroup row>
                 <FormControlLabel
                     control={<Checkbox
+                        checked={this.state.checkedNA}
+                        onChange={this.handleChange('checkedNA')}
+                        value='checkedNA'
+                        classes={{
+                            root: classes.NAstyle, checked: classes.checkedNA, }}
+                    />
+                    }
+                    label='NA'
+                />
+                <FormControlLabel
+                    control={<Checkbox
                         checked={this.state.checkedG}
                         onChange={this.handleChange('checkedG')}
                         value='checkedG'
@@ -34,7 +55,7 @@ class CheckboxLabels extends React.Component {
                 />
                 <FormControlLabel
                     control={<Checkbox
-                        checked={this.state.checkedG}
+                        checked={this.state.checkedY}
                         onChange={this.handleChange('checkedY')}
                         value='checkedY'
                         classes={{
@@ -45,7 +66,7 @@ class CheckboxLabels extends React.Component {
 
                 <FormControlLabel
                     control={<Checkbox
-                        checked={this.state.checkedY}
+                        checked={this.state.checkedR}
                         onChange={this.handleChange('checkedR')}
                         value='checkedR'
                         classes={{
@@ -59,4 +80,4 @@ class CheckboxLabels extends React.Component {
     }
 }
 
-export const ToolbarTrafficlight = withStyles(trafficStyles)(CheckboxLabels);
+export const ToolbarTrafficlight = withStyles(trafficStyles)(Trafficlight);
