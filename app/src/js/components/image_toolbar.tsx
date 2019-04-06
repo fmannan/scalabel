@@ -1,6 +1,6 @@
 import React from 'react';
 import {categoryStyles, removeButtonStyles,
-    switchStyles} from '../styles/2dbox';
+    switchStyles, trafficStyles} from '../styles/2dbox';
 import ListItem from '@material-ui/core/ListItem';
 import {withStyles} from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -18,14 +18,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Switch from '@material-ui/core/Switch';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
-import yellow from '@material-ui/core/colors/yellow';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 interface Props {
-    categories: Object;
-    attributes: Object;
+    categories: any[];
+    attributes: any[];
 }
 
 /**
@@ -70,7 +67,7 @@ class MultipleSelect extends React.Component<Props> {
                         value={this.state.name}
                         onChange={this.handleChangeMultiple}
                         inputProps={{
-                            id: 'select-multiple-native',
+                            id: 'select-multiple-native'
                         }}
                     >
                         {categories.map((name) => (
@@ -181,7 +178,7 @@ function TrafficLightColor() {
             <PopupState variant='popover'
                         popupId='demo-popup-menu'
                         size='small'>
-                {(popupState) => (
+                {(popupState: { close: ((event: React.MouseEvent<HTMLElement, MouseEvent>) => void) | undefined; }) => (
                     <React.Fragment>
                         <Button variant='contained'
                                 size='small'
@@ -201,32 +198,6 @@ function TrafficLightColor() {
     );
 }
 
-const Trafficstyles = {
-    greenstyle: {
-        'color': green[600],
-        '&$checkedgreen': {
-            color: green[500]
-        }
-    },
-
-    checkedgreen: {},
-    redstyle: {
-        'color': red[600],
-        '&$checkedred': {
-            color: red[500]
-        }
-    },
-    checkedred: {},
-
-    yellowstyle: {
-        'color': yellow[600],
-        '&$checkedyellow': {
-            color: yellow[500]
-        }
-    },
-    checkedyellow: {}
-};
-
 class CheckboxLabels extends React.Component {
     public state = {
         checkedY: true,
@@ -234,7 +205,7 @@ class CheckboxLabels extends React.Component {
         checkedR: true
     };
 
-    public handleChange = (name: any) => event => {
+    public handleChange = (name: any) => (event: { target: { checked: any; }; }) => {
         this.setState({ [name]: event.target.checked });
     };
 
@@ -250,42 +221,40 @@ class CheckboxLabels extends React.Component {
                         value='checkedG'
                         classes={{
                             root: classes.greenstyle, checked: classes.checkedgreen,}}
-                            />
-            }
+                    />
+                    }
                     label='G'
                 />
-             <FormControlLabel
+                <FormControlLabel
                     control={<Checkbox
                         checked={this.state.checkedG}
                         onChange={this.handleChange('checkedY')}
                         value='checkedY'
-                    classes={{
-                        root: classes.yellowstyle, checked: classes.checkedyellow,}} />
+                        classes={{
+                            root: classes.yellowstyle, checked: classes.checkedyellow,}} />
                     }
                     label='Y'
                 />
 
-              <FormControlLabel
+                <FormControlLabel
                     control={<Checkbox
                         checked={this.state.checkedY}
                         onChange={this.handleChange('checkedR')}
                         value='checkedR'
-                    classes={{
-                        root: classes.redstyle, checked: classes.checkedred,}}
-                        />
+                        classes={{
+                            root: classes.redstyle, checked: classes.checkedred,}}
+                    />
                     }
                     label='R'
                 />
-
             </FormGroup>
-
-    );
+        );
     }
 }
 
-const TrafficlightCheckBox = withStyles(Trafficstyles)(CheckboxLabels);
+const TrafficlightCheckBox = withStyles(trafficStyles)(CheckboxLabels);
 
-/**
+/**a
  * This is ToolBar component that displays
  * all the attributes and categories for the 2D bounding box labeling tool
  */
