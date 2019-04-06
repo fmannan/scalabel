@@ -23,29 +23,6 @@ import red from '@material-ui/core/colors/red';
 import yellow from '@material-ui/core/colors/yellow';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-
-const styles = theme => ({
-    button: {
-        margin: theme.spacing.unit,
-    },
-    rightIcon: {
-        marginLeft: theme.spacing.unit,
-    },
-});
-
-function IconLabelButtons(props) {
-    const { classes } = props;
-    return (
-        <div>
-            <Button variant="contained" className={classes.button}>
-                Remove
-            <DeleteIcon className={classes.rightIcon} />
-            </Button>
-        </div>
-    );
-}
-const DeletButton = withStyles(styles)(IconLabelButtons);
-
 interface Props {
     categories: Object;
     attributes: Object;
@@ -60,7 +37,7 @@ class MultipleSelect extends React.Component<Props> {
         name: []
     };
 
-    public handleChangeMultiple = (event) => {
+    public handleChangeMultiple = (event: { target: { options: any; }; }) => {
         const {options} = event.target;
         const value = [];
         for (let i = 0, l = options.length; i < l; i += 1) {
@@ -84,7 +61,7 @@ class MultipleSelect extends React.Component<Props> {
         return (
             <div className={classes.root}>
                 <FormControl className={classes.formControl}>
-                    <InputLabel shrink htmlFor="select-multiple-native">
+                    <InputLabel shrink htmlFor='select-multiple-native'>
                         Label Category
                     </InputLabel>
                     <Select
@@ -140,7 +117,7 @@ class SwitchButton extends React.Component<Props> {
         checked: []
     };
 
-    public handleToggle = (value) => () => {
+    public handleToggle = (value: any) => () => {
         const {checked} = this.state;
         const currentIndex = checked.indexOf(value);
         const newChecked = [...checked];
@@ -224,48 +201,44 @@ function TrafficLightColor() {
     );
 }
 
-
-
 const Trafficstyles = {
     greenstyle: {
-        color: green[600],
+        'color': green[600],
         '&$checkedgreen': {
-            color: green[500],
-        },
+            color: green[500]
+        }
     },
 
     checkedgreen: {},
     redstyle: {
-        color: red[600],
+        'color': red[600],
         '&$checkedred': {
-            color: red[500],
-        },
+            color: red[500]
+        }
     },
     checkedred: {},
 
     yellowstyle: {
-        color: yellow[600],
+        'color': yellow[600],
         '&$checkedyellow': {
-            color: yellow[500],
-        },
+            color: yellow[500]
+        }
     },
-    checkedyellow: {},
+    checkedyellow: {}
 };
 
-
-
 class CheckboxLabels extends React.Component {
-    state = {
+    public state = {
         checkedY: true,
         checkedG: true,
         checkedR: true
     };
 
-    handleChange = name => event => {
+    public handleChange = (name: any) => event => {
         this.setState({ [name]: event.target.checked });
     };
 
-    render() {
+    public render() {
         const { classes } = this.props;
 
         return (
@@ -274,34 +247,34 @@ class CheckboxLabels extends React.Component {
                     control={<Checkbox
                         checked={this.state.checkedG}
                         onChange={this.handleChange('checkedG')}
-                        value="checkedG"
+                        value='checkedG'
                         classes={{
                             root: classes.greenstyle, checked: classes.checkedgreen,}}
                             />
             }
-                    label="G"
+                    label='G'
                 />
              <FormControlLabel
                     control={<Checkbox
                         checked={this.state.checkedG}
                         onChange={this.handleChange('checkedY')}
-                        value="checkedY"
+                        value='checkedY'
                     classes={{
                         root: classes.yellowstyle, checked: classes.checkedyellow,}} />
                     }
-                    label="Y"
+                    label='Y'
                 />
 
               <FormControlLabel
                     control={<Checkbox
                         checked={this.state.checkedY}
                         onChange={this.handleChange('checkedR')}
-                        value="checkedR"
+                        value='checkedR'
                     classes={{
                         root: classes.redstyle, checked: classes.checkedred,}}
                         />
                     }
-                    label="R"
+                    label='R'
                 />
 
             </FormGroup>
@@ -311,10 +284,6 @@ class CheckboxLabels extends React.Component {
 }
 
 const TrafficlightCheckBox = withStyles(Trafficstyles)(CheckboxLabels);
-
-
-
-
 
 /**
  * This is ToolBar component that displays
@@ -348,4 +317,3 @@ export class ToolBar extends React.Component<Props> {
         );
     }
 }
-

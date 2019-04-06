@@ -1,4 +1,4 @@
-export const categoryStyles = (theme) => ({
+export const categoryStyles = (theme: { spacing: { unit: any; }; }) => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap'
@@ -10,7 +10,7 @@ export const categoryStyles = (theme) => ({
     }
 });
 
-export const removeButtonStyles = (theme) => ({
+export const removeButtonStyles = (theme: { spacing: { unit: any; }; }) => ({
     button: {
         margin: theme.spacing.unit,
         fontSize: 2
