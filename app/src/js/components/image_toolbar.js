@@ -16,6 +16,13 @@ import Divider from '@material-ui/core/Divider';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Switch from '@material-ui/core/Switch';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormGroup from '@material-ui/core/FormGroup';
+import green from '@material-ui/core/colors/green';
+import red from '@material-ui/core/colors/red';
+import yellow from '@material-ui/core/colors/yellow';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 
 const styles = theme => ({
     button: {
@@ -217,6 +224,98 @@ function TrafficLightColor() {
     );
 }
 
+
+
+const Trafficstyles = {
+    greenstyle: {
+        color: green[600],
+        '&$checkedgreen': {
+            color: green[500],
+        },
+    },
+
+    checkedgreen: {},
+    redstyle: {
+        color: red[600],
+        '&$checkedred': {
+            color: red[500],
+        },
+    },
+    checkedred: {},
+
+    yellowstyle: {
+        color: yellow[600],
+        '&$checkedyellow': {
+            color: yellow[500],
+        },
+    },
+    checkedyellow: {},
+};
+
+
+
+class CheckboxLabels extends React.Component {
+    state = {
+        checkedY: true,
+        checkedG: true,
+        checkedR: true
+    };
+
+    handleChange = name => event => {
+        this.setState({ [name]: event.target.checked });
+    };
+
+    render() {
+        const { classes } = this.props;
+
+        return (
+            <FormGroup row>
+                <FormControlLabel
+                    control={<Checkbox
+                        checked={this.state.checkedG}
+                        onChange={this.handleChange('checkedG')}
+                        value="checkedG"
+                        classes={{
+                            root: classes.greenstyle, checked: classes.checkedgreen,}}
+                            />
+            }
+                    label="G"
+                />
+             <FormControlLabel
+                    control={<Checkbox
+                        checked={this.state.checkedG}
+                        onChange={this.handleChange('checkedY')}
+                        value="checkedY"
+                    classes={{
+                        root: classes.yellowstyle, checked: classes.checkedyellow,}} />
+                    }
+                    label="Y"
+                />
+
+              <FormControlLabel
+                    control={<Checkbox
+                        checked={this.state.checkedY}
+                        onChange={this.handleChange('checkedR')}
+                        value="checkedR"
+                    classes={{
+                        root: classes.redstyle, checked: classes.checkedred,}}
+                        />
+                    }
+                    label="R"
+                />
+
+            </FormGroup>
+
+    );
+    }
+}
+
+const TrafficlightCheckBox = withStyles(Trafficstyles)(CheckboxLabels);
+
+
+
+
+
 /**
  * This is ToolBar component that displays
  * all the attributes and categories for the 2D bounding box labeling tool
@@ -241,6 +340,10 @@ export class ToolBar extends React.Component<Props> {
                 <ListItem>
                     <TrafficLightColor />
                 </ListItem>
+
+                <ListItem>
+                    <TrafficlightCheckBox />
+                </ListItem>
                 <Divider variant="middle" />
                 <ListItem>
                     <RemoveButton />
@@ -249,3 +352,4 @@ export class ToolBar extends React.Component<Props> {
         );
     }
 }
+
