@@ -20,7 +20,7 @@ interface Props {
  */
 class SwitchButton extends React.Component<Props> {
     public state = {
-        checked: []
+        checked: [' ']
     };
 
     public handleToggle = (value: any) => () => {
@@ -45,7 +45,7 @@ class SwitchButton extends React.Component<Props> {
      */
     public render() {
         const {classes} = this.props;
-        const {attributes} = this.props;
+        /* const {attributes} = this.props;*/
 
         return (
             <List className={classes.root}>

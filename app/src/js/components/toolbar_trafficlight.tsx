@@ -17,7 +17,7 @@ class CheckboxLabels extends React.Component {
     };
 
     public render() {
-        const { classes } = this.props;
+        const {classes} = this.props;
 
         return (
             <FormGroup row>
@@ -27,7 +27,7 @@ class CheckboxLabels extends React.Component {
                         onChange={this.handleChange('checkedG')}
                         value='checkedG'
                         classes={{
-                            root: classes.greenstyle, checked: classes.checkedgreen,}}
+                            root: classes.greenstyle, checked: classes.checkedgreen, }}
                     />
                     }
                     label='G'
@@ -38,7 +38,7 @@ class CheckboxLabels extends React.Component {
                         onChange={this.handleChange('checkedY')}
                         value='checkedY'
                         classes={{
-                            root: classes.yellowstyle, checked: classes.checkedyellow,}} />
+                            root: classes.yellowstyle, checked: classes.checkedyellow, }} />
                     }
                     label='Y'
                 />
@@ -49,7 +49,7 @@ class CheckboxLabels extends React.Component {
                         onChange={this.handleChange('checkedR')}
                         value='checkedR'
                         classes={{
-                            root: classes.redstyle, checked: classes.checkedred,}}
+                            root: classes.redstyle, checked: classes.checkedred, }}
                     />
                     }
                     label='R'
