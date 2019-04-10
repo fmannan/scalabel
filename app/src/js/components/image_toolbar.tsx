@@ -82,7 +82,7 @@ export class ToolBar extends React.Component<Props> {
                 <Divider variant='middle' />
                 <List>
                     {attributes.map((element: any) => (
-                        renderSwitches(element.toolType, this.handleToggle, element.name)
+                        renderTemplate(element.toolType, this.handleToggle, element.name)
                     ))}
                 </List>
                 <Divider variant='middle' />
@@ -94,7 +94,7 @@ export class ToolBar extends React.Component<Props> {
     }
 }
 
-function renderSwitches(toolType: any, handeleToogle: any, name: any) {
+function renderTemplate(toolType: any, handeleToogle: any, name: any) {
     if (toolType === 'switch') {
         return (
             <SwitchBtn onChange = {handeleToogle} value = {name} />
