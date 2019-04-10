@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List/List';
+import ListItemText from '@material-ui/core/es/ListItemText/ListItemText';
 
 interface Props {
     categories: any[];
@@ -81,12 +82,9 @@ export class ToolBar extends React.Component<Props> {
                 <Divider variant='middle' />
                 <List>
                     {attributes.map((element: any) => (
-                        renderSwitches(element.toolType, this.handleToggle(, name))
+                        renderSwitches(element.toolType, this.handleToggle, element.name)
                     ))}
                 </List>
-                <ListItem>
-                    <ToolbarTrafficlight />
-                </ListItem>
                 <Divider variant='middle' />
                 <ListItem>
                     <RemoveButton />
@@ -97,9 +95,16 @@ export class ToolBar extends React.Component<Props> {
 }
 
 function renderSwitches(toolType: any, handeleToogle: any, name: any) {
-    if toolType === 'switch' {
+    if (toolType === 'switch') {
         return (
             <SwitchBtn onChange = {handeleToogle} value = {name} />
+        );
+    } else if (toolType === 'list') {
+        return (
+            <ListItem>
+                <ListItemText primary={name} />
+                <ToolbarTrafficlight />
+            </ListItem>
         );
     }
 }
