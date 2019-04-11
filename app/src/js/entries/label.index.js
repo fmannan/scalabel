@@ -1,4 +1,5 @@
 import {initSession} from '../common/session_init';
 import ReactDOM from 'react-dom';
-initSession()
+initSession();
+// $FlowFixMe
 ReactDOM.render(document.getElementById('labeling-interface'));
