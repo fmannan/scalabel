@@ -1,11 +1,14 @@
 import React from 'react';
 import {trafficStyles} from '../styles/2dbox';
-import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import {withStyles} from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
+import ListItemText from '@material-ui/core/es/ListItemText/ListItemText';
+
 
 interface Props {
+    name: any;
     classes: any;
 }
 
@@ -16,25 +19,25 @@ interface Props {
  */
 class Trafficlight extends React.Component<Props> {
     public state = {
-        checkedY: false,
-        checkedG: false,
-        checkedR: false,
-        checkedNA: true
+        selectedValue : 'a'
     };
 
-    public handleChange = (name: any) => (event: { target: { checked: any; }; }) => {
-        this.setState({ [name]: event.target.checked });
+    public handleChange = (event: { target: { value: any; }; }) => {
+        this.setState({ selectedValue: event.target.value });
     };
+
+
 
     public render() {
-        const {classes} = this.props;
+        const {classes, name} = this.props;
 
         return (
             <FormGroup row>
+                <ListItemText primary={name} />
                 <FormControlLabel
-                    control={<Checkbox
-                        checked={this.state.checkedNA}
-                        onChange={this.handleChange('checkedNA')}
+                    control={<Radio
+                        checked={this.state.selectedValue === 'checkedNA'}
+                        onChange={this.handleChange}
                         value='checkedNA'
                         classes={{
                             root: classes.NAstyle, checked: classes.checkedNA, }}
@@ -43,9 +46,9 @@ class Trafficlight extends React.Component<Props> {
                     label='NA'
                 />
                 <FormControlLabel
-                    control={<Checkbox
-                        checked={this.state.checkedG}
-                        onChange={this.handleChange('checkedG')}
+                    control={<Radio
+                        checked={this.state.selectedValue === 'checkedG'}
+                        onChange={this.handleChange}
                         value='checkedG'
                         classes={{
                             root: classes.greenstyle, checked: classes.checkedgreen, }}
@@ -54,9 +57,9 @@ class Trafficlight extends React.Component<Props> {
                     label='G'
                 />
                 <FormControlLabel
-                    control={<Checkbox
-                        checked={this.state.checkedY}
-                        onChange={this.handleChange('checkedY')}
+                    control={<Radio
+                        checked={this.state.selectedValue === 'checkedY'}
+                        onChange={this.handleChange}
                         value='checkedY'
                         classes={{
                             root: classes.yellowstyle, checked: classes.checkedyellow, }} />
@@ -65,9 +68,9 @@ class Trafficlight extends React.Component<Props> {
                 />
 
                 <FormControlLabel
-                    control={<Checkbox
-                        checked={this.state.checkedR}
-                        onChange={this.handleChange('checkedR')}
+                    control={<Radio
+                        checked={this.state.selectedValue === 'checkedR'}
+                        onChange={this.handleChange}
                         value='checkedR'
                         classes={{
                             root: classes.redstyle, checked: classes.checkedred, }}
