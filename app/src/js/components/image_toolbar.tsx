@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List/List';
-
+import ClassesShorthand from  './GeneralButton';
 interface Props {
     categories: any[];
     attributes: any[];

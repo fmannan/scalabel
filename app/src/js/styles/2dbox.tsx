@@ -20,7 +20,10 @@ export const categoryStyles = (theme: Theme) => createStyles({
 export const removeButtonStyles = (theme: { spacing: { unit: any; }; }) => ({
     button: {
         margin: theme.spacing.unit,
-        fontSize: 2
+        fontSize: '80%'
+    },
+    label: {
+        fontSize: '80%'
     }
 });
 
