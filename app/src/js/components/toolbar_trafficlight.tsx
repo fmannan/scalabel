@@ -6,7 +6,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import ListItemText from '@material-ui/core/es/ListItemText/ListItemText';
 
-
 interface Props {
     name: any;
     classes: any;
@@ -25,9 +24,6 @@ class Trafficlight extends React.Component<Props> {
     public handleChange = (event: { target: { value: any; }; }) => {
         this.setState({ selectedValue: event.target.value });
     };
-
-
-
     public render() {
         const {classes, name} = this.props;
 

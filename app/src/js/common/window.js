@@ -55,6 +55,8 @@ export class Window {
         <ToolBar
             categories={state.config.categories}
             attributes={state.config.attributes}
+            itemType={state.config.itemType}
+            labelType={state.config.labelType}
         />
     );
     /* const leftSidebar1 = (<ToolBar/>); // just replace this*/

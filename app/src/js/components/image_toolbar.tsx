@@ -1,39 +1,16 @@
 import React from 'react';
-import {removeButtonStyles} from '../styles/2dbox';
-import {SwitchBtn} from './toolbar_switch';
-import {ToolbarTrafficlight} from './toolbar_trafficlight';
 import {Category} from './toolbar_category';
 import ListItem from '@material-ui/core/ListItem';
-import {withStyles} from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from '@material-ui/core/Divider';
+import {RemoveButton, renderTemplate, renderButtons} from '../common/label';
 import List from '@material-ui/core/List/List';
 import ClassesShorthand from  './GeneralButton';
 interface Props {
     categories: any[];
     attributes: any[];
+    itemType: any;
+    labelType: any;
 }
-
-/**
- * This is a Icon Button component that
- * displays the remove.
- * @param {object} props
- * @return {jsx} component
- */
-function RemoveButtons(props: { classes: any; }) {
-    const {classes} = props;
-    return (
-        <div>
-            <Button size='small' className={classes.button}>
-                Remove
-                <DeleteIcon fontSize='small' />
-            </Button>
-        </div>
-    );
-}
-const RemoveButton = withStyles(removeButtonStyles)(RemoveButtons);
-
 /**
  * This is ToolBar component that displays
  * all the attributes and categories for the 2D bounding box labeling tool
@@ -72,7 +49,7 @@ export class ToolBar extends React.Component<Props> {
      * @return {jsx} component
      */
     public render() {
-        const {categories, attributes} = this.props;
+        const {categories, attributes, itemType, labelType} = this.props;
         return (
             <div>
                 <ListItem>
@@ -85,24 +62,11 @@ export class ToolBar extends React.Component<Props> {
                     ))}
                 </List>
                 <Divider variant='middle' />
-                <ListItem>
-                    <RemoveButton />
-                </ListItem>
+                <List>
+                    <RemoveButton name = {'Remove'} />
+                    {renderButtons(itemType, labelType)}
+                </List>
             </div>
-        );
-    }
-}
-
-function renderTemplate(toolType: any, handeleToogle: any, name: any) {
-    if (toolType === 'switch') {
-        return (
-            <SwitchBtn onChange = {handeleToogle} value = {name} />
-        );
-    } else if (toolType === 'list') {
-        return (
-            <ListItem>
-                <ToolbarTrafficlight name={name}/>
-            </ListItem>
         );
     }
 }
