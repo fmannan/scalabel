@@ -1,9 +1,6 @@
 import ListItem from '@material-ui/core/ListItem/ListItem';
 import {SwitchBtn} from '../components/toolbar_switch';
-import {withStyles} from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import {removeButtonStyles} from '../styles/label';
-import DeleteIcon from '@material-ui/icons/Delete';
+import {genButton} from '../components/general_button';
 import {ToolbarTrafficlight} from '../components/toolbar_trafficlight';
 import List from '@material-ui/core/List/List';
 import React from 'react';
@@ -14,18 +11,6 @@ import React from 'react';
  * @param {object} props
  * @return {jsx} component
  */
-function RemoveButtons(props: { classes: any, name: any }) {
-    const {classes, name} = props;
-    return (
-        <div>
-            <Button size='small' className={classes.button}>
-                {name}
-                <DeleteIcon fontSize='small' />
-            </Button>
-        </div>
-    );
-}
-export const RemoveButton = withStyles(removeButtonStyles)(RemoveButtons);
 
 export function renderTemplate(toolType: any, handeleToogle: any, name: any) {
     if (toolType === 'switch') {
@@ -46,10 +31,10 @@ export function renderButtons(itemType: any, labelType: any) {
         return (
             <List>
                 <ListItem>
-                    <RemoveButton name = {'End Object Trac'} />
+                    {genButton({name: 'End Object Trac'})}
                 </ListItem>
                 <ListItem>
-                    <RemoveButton name = {'Track-Link'} />
+                    {genButton({name: 'Track-Link'})}
                 </ListItem>
             </List>
         );
@@ -62,10 +47,10 @@ export function renderButtons(itemType: any, labelType: any) {
                 return (
                     <List>
                         <ListItem>
-                            <RemoveButton name = {'Link'} />
+                            {genButton({name: 'Link'})}
                         </ListItem>
                         <ListItem>
-                            <RemoveButton name = {'Quick-draw'} />
+                            {genButton({name: 'Quick-draw'})}
                          </ListItem>
                     </List>
                 );

@@ -2,8 +2,9 @@ import React from 'react';
 import {Category} from './toolbar_category';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
-import {RemoveButton, renderTemplate, renderButtons} from '../common/label';
+import {renderTemplate, renderButtons} from '../common/label';
 import List from '@material-ui/core/List/List';
+import {genButton} from './general_button';
 
 interface Props {
     categories: any[];
@@ -63,7 +64,9 @@ export class ToolBar extends React.Component<Props> {
                 </List>
                 <Divider variant='middle' />
                 <List>
-                    <RemoveButton name = {'Remove'} />
+                    <List>
+                        {genButton({name: 'Remove'})}
+                    </List>
                     {renderButtons(itemType, labelType)}
                 </List>
             </div>
