@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from '@material-ui/core/Select';
-import {categoryStyles} from '../styles/2dbox';
+import {categoryStyles} from '../styles/label';
 import {withStyles} from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';

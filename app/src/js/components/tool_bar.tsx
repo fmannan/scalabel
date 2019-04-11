@@ -4,7 +4,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import {RemoveButton, renderTemplate, renderButtons} from '../common/label';
 import List from '@material-ui/core/List/List';
-import ClassesShorthand from  './GeneralButton';
+
 interface Props {
     categories: any[];
     attributes: any[];

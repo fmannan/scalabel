@@ -1,6 +1,6 @@
 import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
-import {switchStyles} from '../styles/2dbox';
+import {switchStyles} from '../styles/label';
 import Switch from '@material-ui/core/Switch';
 import {withStyles} from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';

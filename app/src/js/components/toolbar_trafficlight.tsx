@@ -1,5 +1,5 @@
 import React from 'react';
-import {trafficStyles} from '../styles/2dbox';
+import {trafficStyles} from '../styles/label';
 import FormGroup from '@material-ui/core/FormGroup';
 import {withStyles} from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';

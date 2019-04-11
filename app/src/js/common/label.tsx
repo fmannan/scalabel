@@ -2,7 +2,7 @@ import ListItem from '@material-ui/core/ListItem/ListItem';
 import {SwitchBtn} from '../components/toolbar_switch';
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import {removeButtonStyles} from '../styles/2dbox';
+import {removeButtonStyles} from '../styles/label';
 import DeleteIcon from '@material-ui/icons/Delete';
 import {ToolbarTrafficlight} from '../components/toolbar_trafficlight';
 import List from '@material-ui/core/List/List';
