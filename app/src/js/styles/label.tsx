@@ -3,7 +3,8 @@ import red from '@material-ui/core/colors/red';
 import yellow from '@material-ui/core/colors/yellow';
 import grey from '@material-ui/core/colors/grey';
 import createStyles from '@material-ui/core/styles/createStyles';
-import {Theme} from '@material-ui/core';
+import {Theme, withStyles} from '@material-ui/core';
+import Button from '@material-ui/core/Button/Button';
 
 export const categoryStyles = (theme: Theme) => createStyles({
     root: {
@@ -62,3 +63,26 @@ export const trafficStyles = () => ({
     },
     checkedyellow: {}
 });
+
+export const StyledButton = withStyles({
+    root: {
+        borderRadius: 0,
+        border: 0,
+        color: 'black',
+        height: '80%',
+        width : '80%',
+        padding: '5px 15px',
+        boxShadow: '0 1px 0px 5px rgba(250, 250, 250, 1)',
+        fontSize: '12px',
+        background: 'white',
+        margin: '0px 20px'
+    },
+    label: {
+        textTransform: 'uppercase',
+        fontSize: '12px'
+    },
+    itemText: {
+        fontSize: 10,
+        fontWeight: 500
+    }
+})(Button);

@@ -2,6 +2,7 @@ import ListItem from '@material-ui/core/ListItem/ListItem';
 import {SwitchBtn} from '../components/toolbar_switch';
 import {genButton} from '../components/general_button';
 import {ToolbarTrafficlight} from '../components/toolbar_trafficlight';
+
 import React from 'react';
 
 /**
