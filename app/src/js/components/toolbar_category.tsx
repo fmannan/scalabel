@@ -2,8 +2,8 @@ import React from 'react';
 import Select from '@material-ui/core/Select';
 import {categoryStyles} from '../styles/label';
 import {withStyles} from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import {ListItemText} from '@material-ui/core';
 
 interface Props {
     categories: any[];
@@ -43,24 +43,23 @@ class MultipleSelect extends React.Component<Props> {
         return (
             <div className={classes.root}>
                 <FormControl className={classes.formControl}>
-                    <InputLabel shrink htmlFor='select-multiple-native'>
+                    <ListItemText className={classes.label} >
                         Label Category
-                    </InputLabel>
-                    <Select
-                        multiple
-                        native
-                        value={this.state.name}
-                        onChange={this.handleChangeMultiple}
-                        inputProps={{
-                            id: 'select-multiple-native'
-                        }}
-                    >
-                        {categories.map((name) => (
-                            <option key={name} value={name}>
-                                {name}
-                            </option>
-                        ))}
-                    </Select>
+                    </ListItemText>
+                    <div>
+                        <Select
+                            multiple
+                            native
+                            value={this.state.name}
+                            onChange={this.handleChangeMultiple}
+                        >
+                            {categories.map((name) => (
+                                <option key={name} value={name}>
+                                    {name}
+                                </option>
+                            ))}
+                        </Select>
+                    </div>
                 </FormControl>
             </div>
         );

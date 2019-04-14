@@ -4,18 +4,20 @@ import Button from '@material-ui/core/Button';
 
 const StyledButton = withStyles({
     root: {
-        borderRadius: 3,
+        borderRadius: 0,
         border: 0,
         color: 'black',
         height: '80%',
         width : '80%',
-        padding: '0 30px',
-        boxShadow: '0 1px 1px 1px rgba(0, 0, 0, 0)',
-        fontSize: '80%'
+        padding: '5px 15px',
+        boxShadow: '0 1px 0px 5px rgba(250, 250, 250, 1)',
+        fontSize: '12px',
+        background: 'white',
+        margin: '0px 20px'
     },
     label: {
-        textTransform: 'capitalize',
-        fontSize: '80%'
+        textTransform: 'uppercase',
+        fontSize: '12px'
     },
     itemText: {
         fontSize: 10,

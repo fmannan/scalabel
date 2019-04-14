@@ -2,7 +2,6 @@ import ListItem from '@material-ui/core/ListItem/ListItem';
 import {SwitchBtn} from '../components/toolbar_switch';
 import {genButton} from '../components/general_button';
 import {ToolbarTrafficlight} from '../components/toolbar_trafficlight';
-import List from '@material-ui/core/List/List';
 import React from 'react';
 
 /**
@@ -29,14 +28,14 @@ export function renderTemplate(toolType: any, handeleToogle: any, name: any) {
 export function renderButtons(itemType: any, labelType: any) {
     if (itemType === 'video') {
         return (
-            <List>
-                <ListItem>
+            <div>
+                <div>
                     {genButton({name: 'End Object Trac'})}
-                </ListItem>
-                <ListItem>
+                </div>
+                <div>
                     {genButton({name: 'Track-Link'})}
-                </ListItem>
-            </List>
+                </div>
+            </div>
         );
     }
     if (labelType === 'box2d') {
@@ -45,14 +44,14 @@ export function renderButtons(itemType: any, labelType: any) {
         if (labelType === 'segmentation') {
             if (itemType === 'image') {
                 return (
-                    <List>
-                        <ListItem>
+                    <div>
+                        <div>
                             {genButton({name: 'Link'})}
-                        </ListItem>
-                        <ListItem>
+                        </div>
+                        <div>
                             {genButton({name: 'Quick-draw'})}
-                         </ListItem>
-                    </List>
+                         </div>
+                    </div>
                 );
             }
         } else if (labelType === 'lane') {

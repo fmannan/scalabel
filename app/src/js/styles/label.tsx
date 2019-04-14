@@ -14,16 +14,11 @@ export const categoryStyles = (theme: Theme) => createStyles({
         margin: theme.spacing.unit,
         minWidth: 150,
         maxWidth: 360
-    }
-});
-
-export const removeButtonStyles = (theme: { spacing: { unit: any; }; }) => ({
-    button: {
-        margin: theme.spacing.unit,
-        fontSize: '80%'
     },
     label: {
-        fontSize: '80%'
+        color: 'rgba(0, 0, 0, 1)',
+        fontSize: '12px',
+        margin: '1px 15px'
     }
 });
 

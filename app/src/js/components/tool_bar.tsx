@@ -62,13 +62,15 @@ export class ToolBar extends React.Component<Props> {
                         renderTemplate(element.toolType, this.handleToggle, element.name)
                     ))}
                 </List>
-                <Divider variant='middle' />
-                <List>
-                    <List>
+                <ListItem>
+                    <div> </div>
+                </ListItem>
+                <div>
+                    <div>
                         {genButton({name: 'Remove'})}
-                    </List>
+                    </div>
                     {renderButtons(itemType, labelType)}
-                </List>
+                </div>
             </div>
         );
     }
