@@ -12,7 +12,8 @@
     "moduleResolution": "node",
     "strictNullChecks": true,    // enable strict null checks as a best practice
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
   "include": [
     "app/src/js/entries/*.tsx",
@@ -22,3 +23,4 @@
     "node_modules"
   ]
 }
+
