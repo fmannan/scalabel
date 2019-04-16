@@ -5,23 +5,36 @@ import Grid from '@material-ui/core/Grid';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
-const styles = (theme: { spacing: { unit: number; }; palette: { background: { default: any; }; }; }) => ({
+const styles = () => ({
     root: {
         height: '25px',
         width: '25px',
         fontSize: '12px'
     },
     toggleContainer: {
-        height: 40,
-        width: 250,
+        height: '25px',
+        width: '200px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        background: 'rgba(250,250,250,0)'
+        background: 'rgba(250,250,250,0)',
+        fontSize: '12px'
     },
     buttonGroup: {
         height: '25px',
-        width: '200px'
+        width: '230px',
+        fontSize: '12px'
+    }
+});
+
+const toggleButtonStyles = () => ({
+    root: {
+        color: 'rgba(0, 0, 0, 0.38)',
+        height: '25px',
+        padding: '1px 1px',
+        fontSize: '12px',
+        minWidth: '25px',
+        borderRadius: '2px'
     },
     label: {
         fontSize: '12px'
@@ -46,6 +59,7 @@ class ToggleButtons extends React.Component<Props> {
         const { name } = this.props;
         const { classes } = this.props;
         const { alignment} = this.state;
+        const ToggleBtn = withStyles(toggleButtonStyles)(ToggleButton);
 
         return (
             <Grid container spacing={16}>
@@ -58,10 +72,10 @@ class ToggleButtons extends React.Component<Props> {
                             exclusive
                             onChange={this.handleAlignment}
                         >
-                            <ToggleButton  value = 'left'> N/A </ToggleButton>
-                            <ToggleButton  value = 'green'> G </ToggleButton>
-                            <ToggleButton  value = 'yellow'> Y </ToggleButton>
-                            <ToggleButton  value = 'red'> R </ToggleButton>
+                            <ToggleBtn value = 'left'> N/A </ToggleBtn>
+                            <ToggleBtn value = 'green'> G </ToggleBtn>
+                            <ToggleBtn value = 'yellow'> Y </ToggleBtn>
+                            <ToggleBtn value = 'red'> R </ToggleBtn>
                         </ToggleButtonGroup>
                     </div>
                 </Grid>
