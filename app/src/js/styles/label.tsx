@@ -16,9 +16,9 @@ export const categoryStyles = (theme: Theme) => createStyles({
         minWidth: 150,
         maxWidth: 360
     },
-    label: {
+    primary: {
         color: 'rgba(0, 0, 0, 1)',
-        fontSize: '12px',
+        fontSize: '14px',
         margin: '1px 15px'
     }
 });
@@ -27,6 +27,9 @@ export const switchStyles = () => ({
     root: {
         width: '100%',
         maxWidth: 360
+    },
+    primary: {
+        fontSize: '14px'
     }
 });
 
@@ -73,13 +76,13 @@ export const StyledButton = withStyles({
         width : '80%',
         padding: '5px 15px',
         boxShadow: '0 1px 0px 5px rgba(250, 250, 250, 1)',
-        fontSize: '12px',
+        fontSize: '14px',
         background: 'white',
         margin: '0px 20px'
     },
     label: {
         textTransform: 'uppercase',
-        fontSize: '12px'
+        fontSize: '14px'
     },
     itemText: {
         fontSize: 10,
@@ -92,7 +95,7 @@ export const toggleButtonStyles = () => ({
         color: 'rgba(0, 0, 0, 0.38)',
         height: '28px',
         padding: '1px 1px',
-        fontSize: '12px',
+        fontSize: '14px',
         minWidth: '28px',
         borderRadius: '2px'
     },
@@ -119,6 +122,6 @@ export const trafficLightStyles = () => ({
         width: '230px'
     },
     buttonName: {
-        fontSize: '12px'
+        fontSize: '14px'
     }
 });

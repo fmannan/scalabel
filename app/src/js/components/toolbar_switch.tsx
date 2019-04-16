@@ -24,11 +24,11 @@ class SwitchButton extends React.Component<Props> {
      * @return {jsx} component
      */
     public render() {
-        const {onChange, value} = this.props;
+        const {onChange, value, classes} = this.props;
 
         return (
             <ListItem>
-                <ListItemText primary={value} />
+                <ListItemText classes={{primary: classes.primary}} primary={value}/>
                 <ListItemSecondaryAction>
                     <Switch
                         onChange={onChange(value)}

@@ -43,9 +43,7 @@ class MultipleSelect extends React.Component<Props> {
         return (
             <div className={classes.root}>
                 <FormControl className={classes.formControl}>
-                    <ListItemText className={classes.label} >
-                        Label Category
-                    </ListItemText>
+                    <ListItemText classes={{primary: classes.label}} primary={'Label Category'}/>
                     <div>
                         <Select
                             multiple
