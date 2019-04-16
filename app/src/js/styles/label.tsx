@@ -86,3 +86,39 @@ export const StyledButton = withStyles({
         fontWeight: 500
     }
 })(Button);
+
+export const toggleButtonStyles = () => ({
+    root: {
+        color: 'rgba(0, 0, 0, 0.38)',
+        height: '28px',
+        padding: '1px 1px',
+        fontSize: '12px',
+        minWidth: '28px',
+        borderRadius: '2px'
+    },
+    label: {
+        fontSize: '14px'
+    }
+});
+
+export const trafficLightStyles = () => ({
+    root: {
+        height: '28px',
+        width: '28px'
+    },
+    toggleContainer: {
+        height: '28px',
+        width: '115px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        background: 'rgba(250,250,250,0)'
+    },
+    buttonGroup: {
+        height: '28px',
+        width: '230px'
+    },
+    buttonName: {
+        fontSize: '12px'
+    }
+});
