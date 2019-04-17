@@ -1,9 +1,10 @@
 import React from 'react';
-import Select from '@material-ui/core/Select';
 import {categoryStyles} from '../styles/label';
 import {withStyles} from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import {ListItemText} from '@material-ui/core';
+import Radio from '@material-ui/core/Radio/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel/FormControlLabel';
 
 interface Props {
     categories: any[];
@@ -43,20 +44,18 @@ class MultipleSelect extends React.Component<Props> {
         return (
             <div className={classes.root}>
                 <FormControl className={classes.formControl}>
-                    <ListItemText classes={{primary: classes.label}} primary={'Label Category'}/>
+                    <ListItemText classes={{primary: classes.primary}} primary={'Label Category'}/>
                     <div>
-                        <Select
-                            multiple
-                            native
-                            value={this.state.name}
-                            onChange={this.handleChangeMultiple}
-                        >
-                            {categories.map((name) => (
-                                <option key={name} value={name}>
-                                    {name}
-                                </option>
-                            ))}
-                        </Select>
+                        {categories.map((name) => (
+                            <FormControlLabel
+                                control={<Radio
+                                    key={name}
+                                    value={name}
+                                    classes={{root: classes.checkbox, checked: classes.checked}}
+                                />}
+                                label={name}
+                            />
+                        ))}
                     </div>
                 </FormControl>
             </div>

@@ -5,6 +5,7 @@ import grey from '@material-ui/core/colors/grey';
 import createStyles from '@material-ui/core/styles/createStyles';
 import {Theme, withStyles} from '@material-ui/core';
 import Button from '@material-ui/core/Button/Button';
+import {blue} from '@material-ui/core/es/colors';
 
 export const categoryStyles = (theme: Theme) => createStyles({
     root: {
@@ -17,10 +18,16 @@ export const categoryStyles = (theme: Theme) => createStyles({
         maxWidth: 360
     },
     primary: {
-        color: 'rgba(0, 0, 0, 1)',
-        fontSize: '14px',
-        margin: '1px 15px'
-    }
+        fontSize: '15px'
+    },
+    checkbox: {
+        'color': grey[600],
+        '&$checked': {
+            color: blue[500]
+        },
+        'fontSize': '15px'
+    },
+    checked: {}
 });
 
 export const switchStyles = () => ({
@@ -29,7 +36,7 @@ export const switchStyles = () => ({
         maxWidth: 360
     },
     primary: {
-        fontSize: '14px'
+        fontSize: '15px'
     }
 });
 
@@ -76,13 +83,13 @@ export const StyledButton = withStyles({
         width : '80%',
         padding: '5px 15px',
         boxShadow: '0 1px 0px 5px rgba(250, 250, 250, 1)',
-        fontSize: '14px',
+        fontSize: '15px',
         background: 'white',
         margin: '0px 20px'
     },
     label: {
         textTransform: 'uppercase',
-        fontSize: '14px'
+        fontSize: '15px'
     },
     itemText: {
         fontSize: 10,
@@ -95,12 +102,12 @@ export const toggleButtonStyles = () => ({
         color: 'rgba(0, 0, 0, 0.38)',
         height: '28px',
         padding: '1px 1px',
-        fontSize: '14px',
+        fontSize: '15px',
         minWidth: '28px',
         borderRadius: '2px'
     },
     label: {
-        fontSize: '14px'
+        fontSize: '15px'
     }
 });
 
@@ -122,6 +129,6 @@ export const trafficLightStyles = () => ({
         width: '230px'
     },
     buttonName: {
-        fontSize: '14px'
+        fontSize: '15px'
     }
 });
