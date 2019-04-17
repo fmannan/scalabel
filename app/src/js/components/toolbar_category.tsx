@@ -17,20 +17,11 @@ interface Props {
  */
 class MultipleSelect extends React.Component<Props> {
     public state = {
-        name: []
+        selectedValue : 'a'
     };
 
-    public handleChangeMultiple = (event: { target: { options: any; }; }) => {
-        const {options} = event.target;
-        const value = [];
-        for (let i = 0, l = options.length; i < l; i += 1) {
-            if (options[i].selected) {
-                value.push(options[i].value);
-            }
-        }
-        this.setState({
-            name: value
-        });
+    public handleChange = (event: { target: { value: any; }; }) => {
+        this.setState({ selectedValue: event.target.value });
     };
 
     /**
@@ -49,6 +40,8 @@ class MultipleSelect extends React.Component<Props> {
                         {categories.map((name) => (
                             <FormControlLabel
                                 control={<Radio
+                                    checked={this.state.selectedValue === name}
+                                    onChange={this.handleChange}
                                     key={name}
                                     value={name}
                                     classes={{root: classes.checkbox, checked: classes.checked}}
