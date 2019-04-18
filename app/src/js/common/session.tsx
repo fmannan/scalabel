@@ -163,7 +163,7 @@ class Session {
       if (_.isEmpty(config)) {
         config = makePointCloudViewerConfig();
       }
-      loader.load(item.url, function(geometry: THREE.Geometry) {
+      loader.load(item.url, function(geometry: THREE.BufferGeometry) {
           const material = new THREE.ShaderMaterial({
             uniforms: {
               red: {
