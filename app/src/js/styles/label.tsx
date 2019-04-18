@@ -75,24 +75,22 @@ export const toggleButtonStyles = () => ({
     root: {
         color: 'rgba(0, 0, 0, 0.38)',
         height: '28px',
-        padding: '1px 1px',
+        padding: '1px 2px',
         fontSize: '15px',
         minWidth: '28px',
         borderRadius: '2px'
     },
     label: {
-        fontSize: '15px'
+        fontSize: '11px'
     }
 });
 
-export const trafficLightStyles = () => ({
+export const listButtonStyles = () => ({
     root: {
-        height: '28px',
-        width: '28px'
+        height: '28px'
     },
     toggleContainer: {
         height: '28px',
-        width: '115px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -100,10 +98,7 @@ export const trafficLightStyles = () => ({
     },
     buttonGroup: {
         height: '28px',
-        width: '230px'
-    },
-    buttonName: {
-        fontSize: '15px'
+        width: '100%'
     },
     primary: {
         fontSize: '15px'

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Validator} from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {toggleButtonStyles, trafficLightStyles} from '../styles/label';
+import {toggleButtonStyles, listButtonStyles} from '../styles/label';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,11 +11,12 @@ import {ListItemText} from '@material-ui/core';
 interface Props {
     classes: any;
     name: any;
+    values: string[];
 }
 
 class ToggleButtons extends React.Component<Props> {
     public state = {
-        alignment: 'left',
+        alignment: this.props.values[0],
         formats: ['bold']
     };
 
@@ -23,9 +24,8 @@ class ToggleButtons extends React.Component<Props> {
     public static propTypes: { classes: Validator<NonNullable<object>> };
 
     public render() {
-        const { name } = this.props;
-        const { classes } = this.props;
-        const { alignment } = this.state;
+        const {name, classes, values} = this.props;
+        const {alignment} = this.state;
         const ToggleBtn = withStyles(toggleButtonStyles)(ToggleButton);
 
         return (
@@ -45,10 +45,9 @@ class ToggleButtons extends React.Component<Props> {
                             exclusive
                             onChange={this.handleAlignment}
                         >
-                            <ToggleBtn value = 'left'> N/A </ToggleBtn>
-                            <ToggleBtn value = 'green'> G </ToggleBtn>
-                            <ToggleBtn value = 'yellow'> Y </ToggleBtn>
-                            <ToggleBtn value = 'red'> R </ToggleBtn>
+                            {values.map((element: any) => (
+                                <ToggleBtn value = {element}> {element} </ToggleBtn>
+                            ))}
                         </ToggleButtonGroup>
                     </div>
                 </ListItem>
@@ -57,4 +56,4 @@ class ToggleButtons extends React.Component<Props> {
     }
 }
 
-export const TrafficLightButton = withStyles(trafficLightStyles)(ToggleButtons);
+export const ListButton = withStyles(listButtonStyles)(ToggleButtons);

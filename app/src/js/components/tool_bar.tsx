@@ -61,7 +61,7 @@ export class ToolBar extends React.Component<Props> {
                 <Divider variant='middle' />
                 <List>
                     {attributes.map((element: any) => (
-                        renderTemplate(element.toolType, this.handleToggle, element.name)
+                        renderTemplate(element.toolType, this.handleToggle, element.name, element.values)
                     ))}
                 </List>
                 <div>

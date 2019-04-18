@@ -1,7 +1,7 @@
 import ListItem from '@material-ui/core/ListItem/ListItem';
 import {SwitchBtn} from '../components/toolbar_switch';
 import {genButton} from '../components/general_button';
-import {TrafficLightButton} from '../components/toolbar_trafficlight';
+import {ListButton} from '../components/toolbar_listButton';
 
 import React from 'react';
 
@@ -12,7 +12,7 @@ import React from 'react';
  * @return {jsx} component
  */
 
-export function renderTemplate(toolType: any, handeleToogle: any, name: any) {
+export function renderTemplate(toolType: any, handeleToogle: any, name: any, values: any) {
     if (toolType === 'switch') {
         return (
             <SwitchBtn onChange = {handeleToogle} value = {name} />
@@ -20,7 +20,7 @@ export function renderTemplate(toolType: any, handeleToogle: any, name: any) {
     } else if (toolType === 'list') {
         return (
             <ListItem style={{textAlign: 'center'}} >
-                <TrafficLightButton name={name} />
+                <ListButton name = {name} values = {values} />
             </ListItem>
         );
     }
