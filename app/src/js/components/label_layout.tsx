@@ -1,61 +1,68 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import SplitPane from 'react-split-pane';
 import Session from '../common/session';
 
-type Props = {
-  titleBar: Object,
-  leftSidebar1: Object,
-  leftSidebar2?: Object,
-  main: Object,
-  bottomBar?: Object,
-  rightSidebar1?: Object,
-  rightSidebar2?: Object,
+interface Props {
+  titleBar: any;
+  leftSidebar1: any;
+  leftSidebar2?: any;
+  main: any;
+  bottomBar?: any;
+  rightSidebar1?: any;
+  rightSidebar2?: any;
 }
 
-type State = {
-  left_size: number,
-  center_size: number,
-  right_size: number,
+interface State {
+  left_size: number;
+  center_size: number;
+  right_size: number;
 }
 
-window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
+interface LayoutState {
+  left_size: number;
+  center_size: number;
+  right_size: number;
+}
+
+(window as any).__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 /**
  * Layout of the labeling interface
  */
 class LabelLayout extends React.Component<Props, State> {
+  private layout_state: LayoutState;
   /**
    * @param {object} props
    */
-  constructor(props: Object) {
+  constructor(props: any) {
     super(props);
-    this.state = {left_size: 0, center_size: 0, right_size: 0};
+    this.layout_state = {left_size: 0, center_size: 0, right_size: 0};
     Session.subscribe(this);
   }
 
   /**
    * called on redux store update
    */
-  onStateUpdated() {
-    this.setState(this.state);
+  public onStateUpdated() {
+    this.setState(this.layout_state);
   }
 
   /**
    * @param {number} size
    * @param {string} position
    */
-  handleOnChange(size: number, position: string) {
-    let state = this.state;
-    if (position === 'left' && this.state.left_size !== size) {
-      state.left_size = size;
-    } else if (position === 'center' && this.state.center_size !== size) {
-      state.center_size = size;
-    } else if (position === 'right' && this.state.right_size !== size) {
-      state.right_size = size;
+  public handleOnChange(size: number, position: string) {
+    const layout_state = this.layout_state;
+    if (position === 'left' && this.layout_state.left_size !== size) {
+      layout_state.left_size = size;
+    } else if (position === 'center' && this.layout_state.center_size !== size) {
+      layout_state.center_size = size;
+    } else if (position === 'right' && this.layout_state.right_size !== size) {
+      layout_state.right_size = size;
     }
-    this.setState(state);
+    this.setState(layout_state);
   }
 
   /**
@@ -74,10 +81,12 @@ class LabelLayout extends React.Component<Props, State> {
    * which size to update in state
    * @return {Component}
    */
-  optionalSplit(split: string, comp1: React.Fragment, comp2: React.Fragment,
-                name1: string, name2: string, min: number, dflt: number,
-                max: number, primary: string = 'first',
-                position: string = 'center') {
+  public optionalSplit(split: 'vertical' | 'horizontal',
+                       comp1: React.ReactFragment | undefined,
+                       comp2: React.ReactFragment | undefined,
+                       name1: string, name2: string, min: number, dflt: number,
+                       max: number, primary: 'first' | 'second' = 'first',
+                       position: string = 'center') {
     if (!comp1) {
       return;
     }
@@ -106,7 +115,7 @@ class LabelLayout extends React.Component<Props, State> {
    * Render function
    * @return {React.Fragment} React fragment
    */
-  render() {
+  public render() {
     const {titleBar, leftSidebar1, leftSidebar2, bottomBar,
       main, rightSidebar1, rightSidebar2} = this.props;
     const mainWithProps = React.cloneElement(main, {});
@@ -166,14 +175,14 @@ class LabelLayout extends React.Component<Props, State> {
   }
 }
 
-LabelLayout.propTypes = {
-  titleBar: PropTypes.object.isRequired,
-  leftSidebar1: PropTypes.object.isRequired,
-  leftSidebar2: PropTypes.object,
-  main: PropTypes.object.isRequired,
-  bottomBar: PropTypes.object,
-  rightSidebar1: PropTypes.object,
-  rightSidebar2: PropTypes.object,
-};
+// LabelLayout.propTypes = {
+//   titleBar: PropTypes.object.isRequired,
+//   leftSidebar1: PropTypes.object.isRequired,
+//   leftSidebar2: PropTypes.object,
+//   main: PropTypes.object.isRequired,
+//   bottomBar: PropTypes.object,
+//   rightSidebar1: PropTypes.object,
+//   rightSidebar2: PropTypes.object,
+// };
 
 export default LabelLayout;

@@ -1,13 +1,13 @@
 // @flow
 import {sprintf} from 'sprintf-js';
 import * as types from '../actions/action_types';
-import type {ImageViewerConfigType, PointCloudViewerConfigType,
-  ItemType, StateType} from '../functional/types';
+import {ImageViewerConfigType, PointCloudViewerConfigType,
+  StateType} from '../functional/types';
 import _ from 'lodash';
 import {makeImageViewerConfig,
   makePointCloudViewerConfig} from '../functional/states';
 import {configureStore, configureFastStore} from './configure_store';
-import type {WindowType} from './window';
+import {WindowType} from './window';
 import * as THREE from 'three';
 import {PLYLoader} from '../thirdparty/PLYLoader';
 
@@ -15,14 +15,14 @@ import {PLYLoader} from '../thirdparty/PLYLoader';
  * Singleton session class
  */
 class Session {
-  store: Object;
-  fastStore: Object; // This store contains the temporary state
-  images: Array<Image>;
-  pointClouds: Array<THREE.Points>;
-  itemType: string;
-  labelType: string;
-  window: WindowType;
-  devMode: boolean;
+  public store: any;
+  public fastStore: any; // This store contains the temporary state
+  public images: HTMLImageElement[];
+  public pointClouds: THREE.Points[];
+  public itemType: string;
+  public labelType: string;
+  public window?: WindowType;
+  public devMode: boolean;
 
   /**
    * no-op for state initialization
@@ -32,6 +32,8 @@ class Session {
     this.fastStore = configureFastStore();
     this.images = [];
     this.pointClouds = [];
+    this.itemType = '';
+    this.labelType = '';
     // TODO: make it configurable in the url
     this.devMode = true;
   }
@@ -40,7 +42,7 @@ class Session {
    * Get current state in store
    * @return {StateType}
    */
-  getState(): StateType {
+  public getState(): StateType {
     return this.store.getState().present;
   }
 
@@ -48,23 +50,23 @@ class Session {
    * Get the current temporary state. It is for animation rendering.
    * @return {StateType}
    */
-  getFastState(): StateType {
+  public getFastState(): StateType {
     return this.fastStore.getState();
   }
 
   /**
    * Wrapper for redux store dispatch
-   * @param {Object} action: action description
+   * @param {any} action: action description
    */
-  dispatch(action: Object): void {
+  public dispatch(action: any): void {
     this.store.dispatch(action);
   }
 
   /**
    * Subscribe all the controllers to the states
-   * @param {Object} component: view component
+   * @param {any} component: view component
    */
-  subscribe(component: Object) {
+  public subscribe(component: any) {
     if (this.store.subscribe) {
       this.store.subscribe(component.onStateUpdated.bind(component));
     }
@@ -73,13 +75,13 @@ class Session {
 
   /**
    * Initialize state store
-   * @param {Object} stateJson: json state from backend
+   * @param {any} stateJson: json state from backend
    */
-  initStore(stateJson: Object): void {
+  public initStore(stateJson: any): void {
     this.store = configureStore(stateJson, this.devMode);
     this.store.dispatch({type: types.INIT_SESSION});
-    window.store = this.store;
-    let state = this.getState();
+    (window as any).store = this.store;
+    const state = this.getState();
     this.itemType = state.config.itemType;
     this.labelType = state.config.labelType;
   }
@@ -87,25 +89,25 @@ class Session {
   /**
    * Load all the images in the state
    */
-  loadImages(): void {
-    let self = this;
-    let items = this.getState().items;
-    for (let i = 0; i < items.length; i++) {
-      let item: ItemType = items[i];
+  private loadImages(): void {
+    const self = this;
+    const items = this.getState().items;
+    for (const item of items) {
       // Copy item config
-      let config: ImageViewerConfigType = {...item.viewerConfig};
+      let config: ImageViewerConfigType = {
+        ...(item.viewerConfig as ImageViewerConfigType)};
       if (_.isEmpty(config)) {
         config = makeImageViewerConfig();
       }
-      let url = item.url;
-      let image = new Image();
+      const url = item.url;
+      const image = new Image();
       image.crossOrigin = 'Anonymous';
       self.images.push(image);
       image.onload = function() {
-        config.imageHeight = this.height;
-        config.imageWidth = this.width;
+        config.imageHeight = (this as any).height;
+        config.imageWidth = (this as any).width;
         self.store.dispatch({type: types.LOAD_ITEM, index: item.index,
-          config: config});
+          config});
       };
       image.onerror = function() {
         alert(sprintf('Image %s was not found.', url));
@@ -117,10 +119,10 @@ class Session {
   /**
    * Load all point clouds in state
    */
-  loadPointClouds(): void {
-    let self = this;
-    let loader = new PLYLoader();
-    let vertexShader =
+  private loadPointClouds(): void {
+    const self = this;
+    const loader = new PLYLoader();
+    const vertexShader =
       `
         varying float distFromOrigin;
         void main() {
@@ -130,7 +132,7 @@ class Session {
           gl_Position = projectionMatrix * mvPosition;
         }
       `;
-    let fragmentShader =
+    const fragmentShader =
       `
         varying float distFromOrigin;
         uniform vec3 red;
@@ -154,15 +156,15 @@ class Session {
         }
       `;
 
-    let items = this.getState().items;
-    for (let i = 0; i < items.length; i++) {
-      let item: ItemType = items[i];
-      let config: PointCloudViewerConfigType = {...item.viewerConfig};
+    const items = this.getState().items;
+    for (const item of items) {
+      let config: PointCloudViewerConfigType = {
+        ...(item.viewerConfig as PointCloudViewerConfigType)};
       if (_.isEmpty(config)) {
         config = makePointCloudViewerConfig();
       }
-      loader.load(item.url, function(geometry) {
-          let material = new THREE.ShaderMaterial({
+      loader.load(item.url, function(geometry: THREE.Geometry) {
+          const material = new THREE.ShaderMaterial({
             uniforms: {
               red: {
                 value: new THREE.Color(0xff0000),
@@ -177,16 +179,16 @@ class Session {
                 value: new THREE.Color(0x00ffff),
               },
             },
-            vertexShader: vertexShader,
-            fragmentShader: fragmentShader,
+            vertexShader,
+            fragmentShader,
             alphaTest: 1.0,
           });
 
-          let particles = new THREE.Points(geometry, material);
+          const particles = new THREE.Points(geometry, material);
           self.pointClouds.push(particles);
 
           self.store.dispatch({type: types.LOAD_ITEM, index: item.index,
-            config: config});
+            config});
         },
 
         function() {
@@ -202,7 +204,7 @@ class Session {
   /**
    * Load labeling data initialization function
    */
-  loadData(): void {
+  public loadData(): void {
     if (this.itemType === 'image') {
       this.loadImages();
     } else if (this.itemType === 'pointcloud') {

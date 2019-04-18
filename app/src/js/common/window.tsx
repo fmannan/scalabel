@@ -12,7 +12,7 @@ import PointCloudView from '../components/point_cloud_view';
  * Manage the whole window
  */
 export class Window {
-  container: Element;
+  private container?: Element;
 
   /**
    * Window constructor
@@ -20,10 +20,8 @@ export class Window {
    * place this window
    */
   constructor(containerName: string) {
-    let container = document.getElementById(containerName);
-    if (container === null) {
-      console.error('Cannot find ' + containerName);
-    } else {
+    const container = document.getElementById(containerName);
+    if (container) {
       this.container = container;
     }
   }
@@ -31,7 +29,7 @@ export class Window {
   /**
    * Function to render the interface
    */
-  render() {
+  public render() {
     /* LabelLayout props:
          * titleBar: required
          * main: required
@@ -41,39 +39,41 @@ export class Window {
          * rightSidebar1: optional
          * rightSidebar2: optional
          */
-    let state = Session.getState();
+    const state = Session.getState();
 
     // get all the components
-    let titleBar = (
+    const titleBar = (
         <TitleBar
             title={state.config.pageTitle}
             instructionLink={state.config.instructionPage}
             dashboardLink={Path.vendorDashboard()}
         />
     );
-    let leftSidebar1 = (<div>1</div>);
-    let labelView = null;
-    if (Session.itemType == 'image') {
+    const leftSidebar1 = (<div>1</div>);
+    let labelView;
+    if (Session.itemType === 'image') {
       labelView = (<ImageView key={'imageView'}/>);
     } else {
       labelView = (<PointCloudView key={'pointCloudView'}/>);
     }
-    let main = (<MainView views={[labelView]} />);
-    let bottomBar = (<div>3</div>);
-    let rightSidebar1 = (<div>4</div>);
-    let rightSidebar2 = (<div>5</div>);
+    const main = (<MainView views={[labelView]} />);
+    const bottomBar = (<div>3</div>);
+    const rightSidebar1 = (<div>4</div>);
+    const rightSidebar2 = (<div>5</div>);
     // render the interface
-    ReactDOM.render(
+    if (this.container) {
+      ReactDOM.render(
         <LabelLayout
-            titleBar={titleBar}
-            leftSidebar1={leftSidebar1}
-            bottomBar={bottomBar}
-            main={main}
-            rightSidebar1={rightSidebar1}
-            rightSidebar2={rightSidebar2}
+          titleBar={titleBar}
+          leftSidebar1={leftSidebar1}
+          bottomBar={bottomBar}
+          main={main}
+          rightSidebar1={rightSidebar1}
+          rightSidebar2={rightSidebar2}
         />,
-        this.container,
-    );
+        this.container
+      );
+    }
   }
 }
 
