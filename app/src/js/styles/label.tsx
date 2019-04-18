@@ -1,6 +1,3 @@
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
-import yellow from '@material-ui/core/colors/yellow';
 import grey from '@material-ui/core/colors/grey';
 import createStyles from '@material-ui/core/styles/createStyles';
 import {Theme, withStyles} from '@material-ui/core';
@@ -25,7 +22,8 @@ export const categoryStyles = (theme: Theme) => createStyles({
         '&$checked': {
             color: blue[500]
         },
-        'fontSize': '15px'
+        'fontSize': '15px',
+        'margin' : '-10px'
     },
     checked: {}
 });
@@ -38,40 +36,6 @@ export const switchStyles = () => ({
     primary: {
         fontSize: '15px'
     }
-});
-
-export const trafficStyles = () => ({
-    NAstyle: {
-        'color': grey[600],
-        '&$checkedNA': {
-            color: grey[500]
-        }
-    },
-    checkedNA: {},
-
-    greenstyle: {
-        'color': green[600],
-        '&$checkedgreen': {
-            color: green[500]
-        }
-    },
-    checkedgreen: {},
-
-    redstyle: {
-        'color': red[600],
-        '&$checkedred': {
-            color: red[500]
-        }
-    },
-    checkedred: {},
-
-    yellowstyle: {
-        'color': yellow[600],
-        '&$checkedyellow': {
-            color: yellow[500]
-        }
-    },
-    checkedyellow: {}
 });
 
 export const StyledButton = withStyles({
@@ -130,5 +94,15 @@ export const trafficLightStyles = () => ({
     },
     buttonName: {
         fontSize: '15px'
+    },
+    primary: {
+        fontSize: '15px'
+    }
+});
+
+export const toolBarStyles = () => ({
+    root: {
+        textAlign: 'center',
+        padding: '10px 5px'
     }
 });

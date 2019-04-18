@@ -11,6 +11,7 @@ interface Props {
     attributes: any[];
     itemType: any;
     labelType: any;
+    classes: any;
 }
 /**
  * This is ToolBar component that displays
@@ -51,9 +52,10 @@ export class ToolBar extends React.Component<Props> {
      */
     public render() {
         const {categories, attributes, itemType, labelType} = this.props;
+
         return (
             <div>
-                <ListItem>
+                <ListItem style={{textAlign: 'center'}} >
                     <Category categories={categories}/>
                 </ListItem>
                 <Divider variant='middle' />
@@ -62,7 +64,6 @@ export class ToolBar extends React.Component<Props> {
                         renderTemplate(element.toolType, this.handleToggle, element.name)
                     ))}
                 </List>
-                <Divider variant='middle' />
                 <div>
                     <div>
                         {genButton({name: 'Remove'})}

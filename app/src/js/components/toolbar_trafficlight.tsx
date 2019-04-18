@@ -1,82 +1,60 @@
 import React from 'react';
-import {trafficStyles} from '../styles/label';
-import FormGroup from '@material-ui/core/FormGroup';
-import {withStyles} from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
-import ListItemText from '@material-ui/core/es/ListItemText/ListItemText';
+import {Validator} from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import {toggleButtonStyles, trafficLightStyles} from '../styles/label';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import ListItem from '@material-ui/core/ListItem';
+import List from '@material-ui/core/List';
+import {ListItemText} from '@material-ui/core';
 
 interface Props {
-    name: any;
     classes: any;
+    name: any;
 }
 
-/**
- * This is a trafficLightColor button component that displays
- * all the color attributes of the traffic lights
- * @return {jsx} component
- */
-class Trafficlight extends React.Component<Props> {
+class ToggleButtons extends React.Component<Props> {
     public state = {
-        selectedValue : 'a'
+        alignment: 'left',
+        formats: ['bold']
     };
 
-    public handleChange = (event: { target: { value: any; }; }) => {
-        this.setState({ selectedValue: event.target.value });
-    };
+    public handleAlignment = (event: any, alignment: any) => this.setState({ alignment });
+    public static propTypes: { classes: Validator<NonNullable<object>> };
+
     public render() {
-        const {classes, name} = this.props;
+        const { name } = this.props;
+        const { classes } = this.props;
+        const { alignment } = this.state;
+        const ToggleBtn = withStyles(toggleButtonStyles)(ToggleButton);
 
         return (
-            <FormGroup row>
-                <ListItemText primary={name} />
-                <FormControlLabel
-                    control={<Radio
-                        checked={this.state.selectedValue === 'checkedNA'}
-                        onChange={this.handleChange}
-                        value='checkedNA'
-                        classes={{
-                            root: classes.NAstyle, checked: classes.checkedNA, }}
-                    />
-                    }
-                    label='NA'
-                />
-                <FormControlLabel
-                    control={<Radio
-                        checked={this.state.selectedValue === 'checkedG'}
-                        onChange={this.handleChange}
-                        value='checkedG'
-                        classes={{
-                            root: classes.greenstyle, checked: classes.checkedgreen, }}
-                    />
-                    }
-                    label='G'
-                />
-                <FormControlLabel
-                    control={<Radio
-                        checked={this.state.selectedValue === 'checkedY'}
-                        onChange={this.handleChange}
-                        value='checkedY'
-                        classes={{
-                            root: classes.yellowstyle, checked: classes.checkedyellow, }} />
-                    }
-                    label='Y'
-                />
-
-                <FormControlLabel
-                    control={<Radio
-                        checked={this.state.selectedValue === 'checkedR'}
-                        onChange={this.handleChange}
-                        value='checkedR'
-                        classes={{
-                            root: classes.redstyle, checked: classes.checkedred, }}
-                    />
-                    }
-                    label='R'
-                />
-            </FormGroup>
+            <List style={{width: '100%'}}>
+                <ListItemText style={{textAlign: 'center', width: '100%'}}
+                              classes={{primary: classes.primary}}
+                              primary={name}/>
+                <ListItem style={{width: '100%'}}>
+                    <div className={classes.toggleContainer}
+                         style={{
+                             marginRight: 'auto',
+                             marginLeft: 'auto'}}
+                    >
+                        <ToggleButtonGroup
+                            className={classes.buttonGroup}
+                            value={alignment}
+                            exclusive
+                            onChange={this.handleAlignment}
+                        >
+                            <ToggleBtn value = 'left'> N/A </ToggleBtn>
+                            <ToggleBtn value = 'green'> G </ToggleBtn>
+                            <ToggleBtn value = 'yellow'> Y </ToggleBtn>
+                            <ToggleBtn value = 'red'> R </ToggleBtn>
+                        </ToggleButtonGroup>
+                    </div>
+                </ListItem>
+            </List>
         );
     }
 }
 
-export const ToolbarTrafficlight = withStyles(trafficStyles)(Trafficlight);
+export const TrafficLightButton = withStyles(trafficLightStyles)(ToggleButtons);

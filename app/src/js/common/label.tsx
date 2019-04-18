@@ -1,7 +1,7 @@
 import ListItem from '@material-ui/core/ListItem/ListItem';
 import {SwitchBtn} from '../components/toolbar_switch';
 import {genButton} from '../components/general_button';
-import {TrafficLightButton} from '../components/toolbar_trafficlight_2';
+import {TrafficLightButton} from '../components/toolbar_trafficlight';
 
 import React from 'react';
 
@@ -19,7 +19,7 @@ export function renderTemplate(toolType: any, handeleToogle: any, name: any) {
     );
     } else if (toolType === 'list') {
         return (
-            <ListItem>
+            <ListItem style={{textAlign: 'center'}} >
                 <TrafficLightButton name={name} />
             </ListItem>
         );
