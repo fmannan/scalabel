@@ -32,13 +32,13 @@ interface LayoutState {
  * Layout of the labeling interface
  */
 class LabelLayout extends React.Component<Props, State> {
-  private layout_state: LayoutState;
+  public state: LayoutState;
   /**
    * @param {object} props
    */
   constructor(props: any) {
     super(props);
-    this.layout_state = {left_size: 0, center_size: 0, right_size: 0};
+    this.state = {left_size: 0, center_size: 0, right_size: 0};
     Session.subscribe(this);
   }
 
@@ -46,7 +46,7 @@ class LabelLayout extends React.Component<Props, State> {
    * called on redux store update
    */
   public onStateUpdated() {
-    this.setState(this.layout_state);
+    this.setState(this.state);
   }
 
   /**
@@ -54,15 +54,15 @@ class LabelLayout extends React.Component<Props, State> {
    * @param {string} position
    */
   public handleOnChange(size: number, position: string) {
-    const layout_state = this.layout_state;
-    if (position === 'left' && this.layout_state.left_size !== size) {
-      layout_state.left_size = size;
-    } else if (position === 'center' && this.layout_state.center_size !== size) {
-      layout_state.center_size = size;
-    } else if (position === 'right' && this.layout_state.right_size !== size) {
-      layout_state.right_size = size;
+    const state = this.state;
+    if (position === 'left' && this.state.left_size !== size) {
+      state.left_size = size;
+    } else if (position === 'center' && this.state.center_size !== size) {
+      state.center_size = size;
+    } else if (position === 'right' && this.state.right_size !== size) {
+      state.right_size = size;
     }
-    this.setState(layout_state);
+    this.setState(state);
   }
 
   /**

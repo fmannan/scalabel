@@ -13,7 +13,7 @@ export function moveCamera(state: StateType,
                            newPosition: Vector3Type): StateType {
   let config = getCurrentItemViewerConfig(state);
   config = updateObject(config, {position: newPosition});
-  if (config) {
+  if (config !== null) {
     return setCurrentItemViewerConfig(state, config);
   } else {
     return state;
@@ -31,7 +31,7 @@ export function moveCameraAndTarget(state: StateType, newPosition: Vector3Type,
                                     newTarget: Vector3Type): StateType {
   let config = getCurrentItemViewerConfig(state);
   config = updateObject(config, {position: newPosition, target: newTarget});
-  if (config) {
+  if (config !== null) {
     return setCurrentItemViewerConfig(state, config);
   } else {
     return state;
