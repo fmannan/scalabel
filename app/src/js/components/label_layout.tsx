@@ -32,13 +32,13 @@ interface LayoutState {
  * Layout of the labeling interface
  */
 class LabelLayout extends React.Component<Props, State> {
-  public state: LayoutState;
+  public layoutState: LayoutState;
   /**
    * @param {object} props
    */
   constructor(props: any) {
     super(props);
-    this.state = {left_size: 0, center_size: 0, right_size: 0};
+    this.layoutState = {left_size: 0, center_size: 0, right_size: 0};
     Session.subscribe(this);
   }
 
@@ -46,7 +46,7 @@ class LabelLayout extends React.Component<Props, State> {
    * called on redux store update
    */
   public onStateUpdated() {
-    this.setState(this.state);
+    this.setState(this.layoutState);
   }
 
   /**
@@ -54,15 +54,15 @@ class LabelLayout extends React.Component<Props, State> {
    * @param {string} position
    */
   public handleOnChange(size: number, position: string) {
-    const state = this.state;
-    if (position === 'left' && this.state.left_size !== size) {
-      state.left_size = size;
-    } else if (position === 'center' && this.state.center_size !== size) {
-      state.center_size = size;
-    } else if (position === 'right' && this.state.right_size !== size) {
-      state.right_size = size;
+    const layoutState = this.layoutState;
+    if (position === 'left' && this.layoutState.left_size !== size) {
+      layoutState.left_size = size;
+    } else if (position === 'center' && this.layoutState.center_size !== size) {
+      layoutState.center_size = size;
+    } else if (position === 'right' && this.layoutState.right_size !== size) {
+      layoutState.right_size = size;
     }
-    this.setState(state);
+    this.setState(layoutState);
   }
 
   /**
@@ -78,7 +78,7 @@ class LabelLayout extends React.Component<Props, State> {
    * @param {string} primary - which component the size constraint is for
    * the second component
    * @param {string} position - left, center or right:
-   * which size to update in state
+   * which size to update in layoutState
    * @return {Component}
    */
   public optionalSplit(split: 'vertical' | 'horizontal',

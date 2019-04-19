@@ -57,7 +57,7 @@ export interface ItemType {
   active: boolean;
   loaded: boolean;
   labels: number[]; // list of label ids
-  viewerConfig: ViewerConfigType | null;
+  viewerConfig: ViewerConfigType;
 }
 
 /*

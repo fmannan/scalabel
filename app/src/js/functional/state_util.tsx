@@ -21,7 +21,7 @@ export function getCurrentItem(state: StateType): ItemType {
  * @return {ViewerConfigType}
  */
 export function getCurrentItemViewerConfig(
-    state: StateType): ViewerConfigType | null {
+    state: StateType): ViewerConfigType {
   return getCurrentItem(state).viewerConfig;
 }
 
