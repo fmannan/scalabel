@@ -30,8 +30,11 @@ class SwitchButton extends React.Component<Props> {
                 <ListItemText classes={{primary: classes.primary}} primary={value}/>
                 <ListItemSecondaryAction>
                     <Switch
-                        classes={{colorPrimary: classes.switch}}
-                        color={'primary'}
+                        classes={{
+                            switchBase: classes.colorSwitchBase,
+                            checked: classes.colorChecked,
+                            bar: classes.colorBar
+                        }}
                         onChange={onChange(value)}
                     />
                 </ListItemSecondaryAction>

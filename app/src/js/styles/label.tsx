@@ -3,7 +3,6 @@ import createStyles from '@material-ui/core/styles/createStyles';
 import {Theme, withStyles} from '@material-ui/core';
 import Button from '@material-ui/core/Button/Button';
 import {blue} from '@material-ui/core/es/colors';
-import {red} from '@material-ui/core/colors';
 
 export const categoryStyles = (theme: Theme) => createStyles({
     root: {
@@ -37,15 +36,17 @@ export const switchStyles = () => ({
     primary: {
         fontSize: '15px'
     },
-    switch: {
-        'color': grey[600],
-        '&$checked': {
-            color: red[500]
-        },
-        '& + $bar': {
-            backgroundColor: red[500]
+    colorSwitchBase: {
+        'color': grey[400],
+        '&$colorChecked': {
+            'color': blue[500],
+            '& + $colorBar': {
+                backgroundColor: blue[500]
+            }
         }
-    }
+    },
+    colorBar: {},
+    colorChecked: {}
 });
 
 export const StyledButton = withStyles({
