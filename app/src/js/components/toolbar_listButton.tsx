@@ -1,7 +1,7 @@
 import React from 'react';
 import {Validator} from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {toggleButtonStyles, listButtonStyles} from '../styles/label';
+import {toggleButtonStyle, listButtonStyle} from '../styles/label';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ListItem from '@material-ui/core/ListItem';
@@ -26,7 +26,7 @@ class ToggleButtons extends React.Component<Props> {
     public render() {
         const {name, classes, values} = this.props;
         const {alignment} = this.state;
-        const ToggleBtn = withStyles(toggleButtonStyles)(ToggleButton);
+        const ToggleBtn = withStyles(toggleButtonStyle)(ToggleButton);
 
         return (
             <List style={{width: '100%'}}>
@@ -56,4 +56,4 @@ class ToggleButtons extends React.Component<Props> {
     }
 }
 
-export const ListButton = withStyles(listButtonStyles)(ToggleButtons);
+export const ListButton = withStyles(listButtonStyle)(ToggleButtons);

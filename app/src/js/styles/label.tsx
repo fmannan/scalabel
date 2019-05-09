@@ -4,10 +4,11 @@ import {Theme, withStyles} from '@material-ui/core';
 import Button from '@material-ui/core/Button/Button';
 import {blue} from '@material-ui/core/es/colors';
 
-export const categoryStyles = (theme: Theme) => createStyles({
+export const categoryStyle = (theme: Theme) => createStyles({
     root: {
         display: 'flex',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        alignItems: 'left'
     },
     formControl: {
         margin: theme.spacing.unit,
@@ -18,6 +19,7 @@ export const categoryStyles = (theme: Theme) => createStyles({
         fontSize: '15px'
     },
     checkbox: {
+        'alignItems': 'left',
         'color': grey[600],
         '&$checked': {
             color: blue[500]
@@ -28,7 +30,7 @@ export const categoryStyles = (theme: Theme) => createStyles({
     checked: {}
 });
 
-export const switchStyles = () => ({
+export const switchStyle = () => ({
     root: {
         width: '100%',
         maxWidth: 360
@@ -72,7 +74,7 @@ export const StyledButton = withStyles({
     }
 })(Button);
 
-export const toggleButtonStyles = () => ({
+export const toggleButtonStyle = () => ({
     root: {
         color: 'rgba(0, 0, 0, 0.38)',
         height: '28px',
@@ -86,7 +88,7 @@ export const toggleButtonStyles = () => ({
     }
 });
 
-export const listButtonStyles = () => ({
+export const listButtonStyle = () => ({
     root: {
         height: '28px'
     },
@@ -103,12 +105,5 @@ export const listButtonStyles = () => ({
     },
     primary: {
         fontSize: '15px'
-    }
-});
-
-export const toolBarStyles = () => ({
-    root: {
-        textAlign: 'center',
-        padding: '10px 5px'
     }
 });

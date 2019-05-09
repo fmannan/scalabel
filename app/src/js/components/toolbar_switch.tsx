@@ -1,6 +1,6 @@
 import React from 'react';
 import {ListItem, ListItemText} from '@material-ui/core';
-import {switchStyles} from '../styles/label';
+import {switchStyle} from '../styles/label';
 import Switch from '@material-ui/core/Switch';
 import {withStyles} from '@material-ui/core/styles';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
@@ -43,4 +43,4 @@ class SwitchButton extends React.Component<Props> {
     }
 }
 
-export const SwitchBtn = withStyles(switchStyles)(SwitchButton);
+export const SwitchBtn = withStyles(switchStyle)(SwitchButton);

@@ -1,5 +1,5 @@
 import React from 'react';
-import {categoryStyles} from '../styles/label';
+import {categoryStyle} from '../styles/label';
 import {withStyles} from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import {ListItemText} from '@material-ui/core';
@@ -56,4 +56,4 @@ class MultipleSelect extends React.Component<Props> {
     }
 }
 
-export const Category = withStyles(categoryStyles, {withTheme: true})(MultipleSelect);
+export const Category = withStyles(categoryStyle, {withTheme: true})(MultipleSelect);
