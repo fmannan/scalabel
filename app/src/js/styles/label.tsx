@@ -19,7 +19,6 @@ export const categoryStyle = (theme: Theme) => createStyles({
         fontSize: '15px'
     },
     checkbox: {
-        'alignItems': 'left',
         'color': grey[600],
         '&$checked': {
             color: blue[500]
