@@ -42,17 +42,17 @@ export class Window {
          * rightSidebar1: optional
          * rightSidebar2: optional
          */
-    const state = Session.getState();
+    let state = Session.getState();
 
     // get all the components
-    const titleBar = (
+    let titleBar = (
         <TitleBar
             title={state.config.pageTitle}
             instructionLink={state.config.instructionPage}
             dashboardLink={Path.vendorDashboard()}
         />
     );
-    const leftSidebar1 = (
+    let leftSidebar1 = (
         <ToolBar
             categories={state.config.categories}
             attributes={state.config.attributes}
@@ -61,11 +61,11 @@ export class Window {
         />
     );
     /* const leftSidebar1 = (<ToolBar/>); // just replace this*/
-    const imageView = (<ImageView key={'imageView'}/>);
-    const main = (<MainView views={[imageView]} />);
-    const bottomBar = (<div>3</div>);
-    const rightSidebar1 = (<div>4</div>);
-    const rightSidebar2 = (<div>5</div>);
+    let imageView = (<ImageView key={'imageView'}/>);
+    let main = (<MainView views={[imageView]} />);
+    let bottomBar = (<div>3</div>);
+    let rightSidebar1 = (<div>4</div>);
+    let rightSidebar2 = (<div>5</div>);
     // render the interface
     ReactDOM.render(
         <LabelLayout
