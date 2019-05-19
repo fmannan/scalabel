@@ -36,7 +36,7 @@ class MultipleSelect extends React.Component<Props> {
             <div className={classes.root}>
                 <FormControl className={classes.formControl}>
                     <ListItemText classes={{primary: classes.primary}} primary={'Label Category'}/>
-                    <div>
+                    <div className={classes.root}>
                         {categories.map((name) => (
                             <FormControlLabel
                                 control={<Radio
