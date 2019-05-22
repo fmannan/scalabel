@@ -14,11 +14,11 @@ import {genButton} from './general_button';
 //type ToolType = 'switch' | 'list' | 'lane';
 
 interface Props {
-    categories: string[];
-    attributes: string[];
-    itemType: string;
-    labelType: string;
-    classes: string;
+    categories: any[];
+    attributes: any[];
+    itemType: any;
+    labelType: any;
+    classes: any;
 }
 /**
  * This is ToolBar component that displays
