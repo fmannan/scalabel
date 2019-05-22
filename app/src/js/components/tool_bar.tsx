@@ -9,15 +9,15 @@ import {genButton} from './general_button';
 /**
  * define literal types
  */
-type ItemType = 'video' | 'image';
-type LabelType = 'box2d' | 'segmentation' | 'lane';
-type ToolType = 'switch' | 'list' | 'lane';
+//type ItemType = 'video' | 'image';
+//type LabelType = 'box2d' | 'segmentation' | 'lane';
+//type ToolType = 'switch' | 'list' | 'lane';
 
 interface Props {
     categories: string[];
-    attributes: ToolType[];
-    itemType: ItemType;
-    labelType: LabelType;
+    attributes: string[];
+    itemType: string;
+    labelType: string;
     classes: string;
 }
 /**
