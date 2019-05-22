@@ -6,12 +6,19 @@ import {renderTemplate, renderButtons} from '../common/label';
 import List from '@material-ui/core/List/List';
 import {genButton} from './general_button';
 
+/**
+ * define literal types
+ */
+type ItemType = 'video' | 'image';
+type LabelType = 'box2d' | 'segmentation' | 'lane';
+type ToolType = 'switch' | 'list' | 'lane';
+
 interface Props {
-    categories: any[];
-    attributes: any[];
-    itemType: any;
-    labelType: any;
-    classes: any;
+    categories: string[];
+    attributes: ToolType[];
+    itemType: ItemType;
+    labelType: LabelType;
+    classes: string;
 }
 /**
  * This is ToolBar component that displays

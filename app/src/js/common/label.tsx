@@ -12,10 +12,10 @@ import React from 'react';
  * @return {jsx} component
  */
 
-export function renderTemplate(toolType: any, handeleToogle: any, name: any, values: any) {
+export function renderTemplate(toolType: any, handleToggle: any, name: any, values: any) {
     if (toolType === 'switch') {
         return (
-            <SwitchBtn onChange = {handeleToogle} value = {name} />
+            <SwitchBtn onChange = {handleToggle} value = {name} />
     );
     } else if (toolType === 'list') {
         return (
