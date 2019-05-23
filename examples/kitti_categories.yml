@@ -1,0 +1,8 @@
+- name: Pedestrian
+- name: Person_sitting
+- name: Cyclist
+- name: Car
+- name: Truck
+- name: Tram
+- name: Van
+
