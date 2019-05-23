@@ -2,6 +2,13 @@ import json
 import os
 import argparse
 
+"""
+Usage:
+kitti2bdd.py --annDir=<path> --save_path=<output>.json [--gt]
+
+If the annotation directory contains groundtruth annotations then use --gt
+"""
+
 
 def parse_arguments():
     # parse the arguments
@@ -39,8 +46,7 @@ def transform_kitti(annDir, imext='.png', gt_file=True):
 
         with open(os.path.join(annDir, file)) as fid:
             data = fid.read().splitlines()
-        print(file)
-        print(data)
+
         img_filename = os.path.splitext(file)[0] + imext
         det_dict = {}
         det_dict["name"] = img_filename
@@ -102,22 +108,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-# import os
-# annDir = '/media/fmannan/PtGreyCaptures/kitti/small_dataset/label_2' #'../test_data'
-#
-# files = os.listdir(annDir)
-#
-# for file in files:
-#     if not file.endswith('.txt'):
-#         continue
-#
-#     with open(os.path.join(annDir, file)) as fid:
-#         data = fid.read().splitlines()
-#     print(file)
-#     print(data)
-#     for row in data:
-#         cols = row.split(' ')
-#         cls_name = ' '.join(cols[:-15])
-#         bbox2d = cols[-15:-8]
-#         bbox3d = cols[-8:-1]
-#         confidence = cols[-1]
