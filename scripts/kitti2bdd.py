@@ -33,14 +33,19 @@ def parse_arguments():
         action='store_true',
         help="groundtruth annotation",
     )
+    parser.add_argument(
+        "--no3d",
+        action='store_true',
+        help="set box3d to null",
+    )
     return parser.parse_args()
 
 
-def transform_kitti(annDir, imext='.png', gt_file=True):
+def transform_kitti(annDir, imext='.png', gt_file=True, no3d=False):
     files = os.listdir(annDir)
 
     bdd_label = []
-    for file in files:
+    for file in sorted(files):
         if not file.endswith('.txt'):
             continue
 
@@ -55,13 +60,14 @@ def transform_kitti(annDir, imext='.png', gt_file=True):
                                   "scene": "undefined",
                                   "timeofday": "undefined"}
         det_dict["frameIndex"] = 0  # TODO
-        det_dict["intrinsics"] = {"focal": [100, 100],  # TODO
-                                  "center": [0, 0],
-                                  "nearClip": 0
-                                  }
-        det_dict["extrinsics"] = {"location": [0, 0, 0],  # TODO
-                                  "rotation": [0, 0, 0]
-                                  }
+        if not no3d:
+            det_dict["intrinsics"] = {"focal": [100, 100],  # TODO
+                                      "center": [0, 0],
+                                      "nearClip": 0
+                                      }
+            det_dict["extrinsics"] = {"location": [0, 0, 0],  # TODO
+                                      "rotation": [0, 0, 0]
+                                      }
         # TODO: attributes
         # ...
 
@@ -86,12 +92,15 @@ def transform_kitti(annDir, imext='.png', gt_file=True):
                        "x2": float(bbox2d[2]),
                        "y2": float(bbox2d[3]),
                      },
-                     'box3d': {
-                         'alpha': alpha,
-                         'orientation': float(bbox3d[-1]),
-                         'location': [float(x) for x in bbox3d[3:6]],
-                         'dimension': [float(x) for x in bbox3d[0:3]]
-                     }}
+                     'box3d': None
+                     }
+            if not no3d:
+                label['box3d'] = {
+                    'alpha': alpha,
+                    'orientation': float(bbox3d[-1]),
+                    'location': [float(x) for x in bbox3d[3:6]],
+                    'dimension': [float(x) for x in bbox3d[0:3]]
+                    }
             det_dict["labels"].append(label)
         bdd_label.append(det_dict)
     return bdd_label
@@ -100,7 +109,7 @@ def transform_kitti(annDir, imext='.png', gt_file=True):
 def main():
     args = parse_arguments()
     print(args)
-    bdd_label = transform_kitti(args.annDir, args.imext, args.gt)
+    bdd_label = transform_kitti(args.annDir, args.imext, args.gt, args.no3d)
     with open(args.save_path, 'w') as outfile:
         json.dump(bdd_label, outfile)
 
